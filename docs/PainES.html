@@ -1,0 +1,2664 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- META DATA ---------------------------->
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <meta name="description" content="Supplemental information">
+	 <meta name="keywords" content="chronic pain, depression, systematic review, meta-analyses, network visualization, data science, review of reviews">
+	 <meta name="author" content="Darren K. Cheng">
+	 <!-- zoom script -->
+	 <script src="https://ariutta.github.io/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script>
+	 <!-- overall script-->
+	 <script>
+	 	/** Viz Selectors **/
+	 	/** ES LABEL TOGGLING **/
+	 		function toggleESlabInt() {
+				for (i=0, max = PLabelIds.length; i<max; i++){
+					var show = document.getElementById(PLabelIds[i]).style.display;
+					var checklabel = document.getElementById("checkedESlabInt");
+					if(show == "none") {
+						document.getElementById(PLabelIds[i]).style.display = "block";}
+			  		if(show != "none") {
+			    		document.getElementById(PLabelIds[i]).style.display = "none"; checklabel.checked = false;
+					}
+				}
+			}
+		/** COMPARATOR TOGGLING **/
+			/* SELECT ALL COMP*/
+				function togAllComp() {
+					var ch1 = document.getElementById("checkedC_NR");
+					var ch2 = document.getElementById("checkedC_Act");
+					var ch3 = document.getElementById("checkedC_Mix");
+					var ch4 = document.getElementById("checkedC_UC");
+					var ch5 = document.getElementById("checkedC_InA");
+					var allcheck = document.getElementById("AllComp");
+					var ch1b = document.getElementById("checkedN_NR");
+					var ch2b = document.getElementById("checkedN_1");
+					var ch3b = document.getElementById("checkedN_2");
+					var ch4b = document.getElementById("checkedN_3");
+					var ch5b = document.getElementById("checkedN_4");
+					var allcheckOther = document.getElementById("AllN");
+					if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true && ch5.checked == true){
+						allcheck.checked = false; ch1.checked = false; ch2.checked = false; ch3.checked = false; ch4.checked = false; ch5.checked = false; allcheckOther.checked = false; ch1b.checked = false; ch2b.checked = false; ch3b.checked = false; ch4b.checked = false; ch5b.checked = false;
+						for (i=0, max = C_NRIds.length; i<max; i++){
+					    		document.getElementById(C_NRIds[i]).style.display = "none"; 
+						}
+						for (i=0, max = C_ActIds.length; i<max; i++){
+					    		document.getElementById(C_ActIds[i]).style.display = "none"; 
+						}
+						for (i=0, max = C_MixIds.length; i<max; i++){
+					    		document.getElementById(C_MixIds[i]).style.display = "none"; 
+						}
+						for (i=0, max = C_UCIds.length; i<max; i++){
+					    		document.getElementById(C_UCIds[i]).style.display = "none"; 
+						}
+						for (i=0, max = C_InAIds.length; i<max; i++){
+					    		document.getElementById(C_InAIds[i]).style.display = "none"; 
+						}
+					}
+					else {allcheck.checked = true; ch1.checked = true; ch2.checked = true; ch3.checked = true; ch4.checked = true; ch5.checked = true; allcheckOther.checked = true; ch1b.checked = true; ch2b.checked = true; ch3b.checked = true; ch4b.checked = true; ch5b.checked = true; 
+						for (i=0, max = C_NRIds.length; i<max; i++){
+					    		document.getElementById(C_NRIds[i]).style.display = "block"; 
+						}
+						for (i=0, max = C_ActIds.length; i<max; i++){
+					    		document.getElementById(C_ActIds[i]).style.display = "block"; 
+						}
+						for (i=0, max = C_MixIds.length; i<max; i++){
+					    		document.getElementById(C_MixIds[i]).style.display = "block"; 
+						}
+						for (i=0, max = C_UCIds.length; i<max; i++){
+					    		document.getElementById(C_UCIds[i]).style.display = "block"; 
+						}
+						for (i=0, max = C_InAIds.length; i<max; i++){
+					    		document.getElementById(C_InAIds[i]).style.display = "block"; 
+						}
+					}
+				}
+			/** Comp Toggles **/
+				function togC_Act() {
+					for (i=0, max = C_ActIds.length; i<max; i++){
+						var show = document.getElementById(C_ActIds[i]).style.display;
+						var checklabel = document.getElementById("checkedC_Act");
+						var allcheck = document.getElementById("AllComp");
+						var ch1 = document.getElementById("checkedC_NR");
+						var ch2 = document.getElementById("checkedC_InA");
+						var ch3 = document.getElementById("checkedC_Mix");
+						var ch4 = document.getElementById("checkedC_UC");
+						if(show == "none") {
+							document.getElementById(C_ActIds[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(C_ActIds[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false; 
+						}
+					}
+				}
+				function togC_Mix() {
+					for (i=0, max = C_MixIds.length; i<max; i++){
+						var show = document.getElementById(C_MixIds[i]).style.display;
+						var checklabel = document.getElementById("checkedC_Mix");
+						var allcheck = document.getElementById("AllComp");
+						var ch1 = document.getElementById("checkedC_NR");
+						var ch2 = document.getElementById("checkedC_InA");
+						var ch3 = document.getElementById("checkedC_Act");
+						var ch4 = document.getElementById("checkedC_UC");
+						if(show == "none") {
+							document.getElementById(C_MixIds[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(C_MixIds[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false; 
+						}
+					}
+				}
+				function togC_UC() {
+					for (i=0, max = C_UCIds.length; i<max; i++){
+						console.log(max);
+						var show = document.getElementById(C_UCIds[i]).style.display;
+						var checklabel = document.getElementById("checkedC_UC");
+						var allcheck = document.getElementById("AllComp");
+						var ch1 = document.getElementById("checkedC_NR");
+						var ch2 = document.getElementById("checkedC_InA");
+						var ch3 = document.getElementById("checkedC_Mix");
+						var ch4 = document.getElementById("checkedC_Act");
+						if(show == "none") {
+							document.getElementById(C_UCIds[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(C_UCIds[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false; 
+						}
+					}
+				}
+				function togC_InA() {
+					for (i=0, max = C_InAIds.length; i<max; i++){
+						var show = document.getElementById(C_InAIds[i]).style.display;
+						var checklabel = document.getElementById("checkedC_InA");
+						var allcheck = document.getElementById("AllComp");
+						var ch1 = document.getElementById("checkedC_NR");
+						var ch2 = document.getElementById("checkedC_Act");
+						var ch3 = document.getElementById("checkedC_Mix");
+						var ch4 = document.getElementById("checkedC_UC");
+						if(show == "none") {
+							document.getElementById(C_InAIds[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(C_InAIds[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false; 
+						}
+					}
+				}
+				function togC_NR() {
+					for (i=0, max = C_NRIds.length; i<max; i++){
+						var show = document.getElementById(C_NRIds[i]).style.display;
+						var checklabel = document.getElementById("checkedC_NR");
+						var allcheck = document.getElementById("AllComp");
+						var ch1 = document.getElementById("checkedC_Act");
+						var ch2 = document.getElementById("checkedC_InA");
+						var ch3 = document.getElementById("checkedC_Mix");
+						var ch4 = document.getElementById("checkedC_UC");
+						if(show == "none") {
+							document.getElementById(C_NRIds[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(C_NRIds[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false; 
+						}
+					}
+				}
+		/** SAMPLE SIZE TOGGLING **/
+			/* SELECT ALL SAMP*/
+				function togAllN() {
+					var ch1 = document.getElementById("checkedN_NR");
+					var ch2 = document.getElementById("checkedN_1");
+					var ch3 = document.getElementById("checkedN_2");
+					var ch4 = document.getElementById("checkedN_3");
+					var ch5 = document.getElementById("checkedN_4");
+					var allcheck = document.getElementById("AllN");
+					var ch1b = document.getElementById("checkedC_NR");
+					var ch2b = document.getElementById("checkedC_Act");
+					var ch3b = document.getElementById("checkedC_Mix");
+					var ch4b = document.getElementById("checkedC_UC");
+					var ch5b = document.getElementById("checkedC_InA");
+					var allcheckOther = document.getElementById("AllComp");
+					if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true && ch5.checked == true){
+						allcheck.checked = false; ch1.checked = false; ch2.checked = false; ch3.checked = false; ch4.checked = false; ch5.checked = false; allcheckOther.checked = false; ch1b.checked = false; ch2b.checked = false; ch3b.checked = false; ch4b.checked = false; ch5b.checked = false;
+						for (i=0, max = N_NRIds.length; i<max; i++){
+					    		document.getElementById(N_NRIds[i]).style.display = "none"; 
+						}
+						for (i=0, max = N_1Ids.length; i<max; i++){
+					    		document.getElementById(N_1Ids[i]).style.display = "none"; 
+						}
+						for (i=0, max = N_2Ids.length; i<max; i++){
+					    		document.getElementById(N_2Ids[i]).style.display = "none"; 
+						}
+						for (i=0, max = N_3Ids.length; i<max; i++){
+					    		document.getElementById(N_3Ids[i]).style.display = "none"; 
+						}
+						for (i=0, max = N_4Ids.length; i<max; i++){
+					    		document.getElementById(N_4Ids[i]).style.display = "none"; 
+						}
+					}
+					else {allcheck.checked = true; ch1.checked = true; ch2.checked = true; ch3.checked = true; ch4.checked = true; ch5.checked = true; allcheckOther.checked = true; ch1b.checked = true; ch2b.checked = true; ch3b.checked = true; ch4b.checked = true; ch5b.checked = true;
+						for (i=0, max = N_NRIds.length; i<max; i++){
+					    		document.getElementById(N_NRIds[i]).style.display = "block"; 
+						}
+						for (i=0, max = N_1Ids.length; i<max; i++){
+					    		document.getElementById(N_1Ids[i]).style.display = "block"; 
+						}
+						for (i=0, max = N_2Ids.length; i<max; i++){
+					    		document.getElementById(N_2Ids[i]).style.display = "block"; 
+						}
+						for (i=0, max = N_3Ids.length; i<max; i++){
+					    		document.getElementById(N_3Ids[i]).style.display = "block"; 
+						}
+						for (i=0, max = N_4Ids.length; i<max; i++){
+					    		document.getElementById(N_4Ids[i]).style.display = "block"; 
+						}
+					}
+				}
+			/** Samp Toggles **/
+				function togN_NR() {
+					for (i=0, max = N_NRIds.length; i<max; i++){
+						var show = document.getElementById(N_NRIds[i]).style.display;
+						var checklabel = document.getElementById("checkedN_NR");
+						var allcheck = document.getElementById("AllN");
+						var ch1 = document.getElementById("checkedN_1");
+						var ch2 = document.getElementById("checkedN_2");
+						var ch3 = document.getElementById("checkedN_3");
+						var ch4 = document.getElementById("checkedN_4")
+						if(show == "none") {
+							document.getElementById(N_NRIds[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(N_NRIds[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false;
+						}
+					}
+				}
+				function togN_1() {
+					for (i=0, max = N_1Ids.length; i<max; i++){
+						var show = document.getElementById(N_1Ids[i]).style.display;
+						var checklabel = document.getElementById("checkedN_1");
+						var allcheck = document.getElementById("AllN");
+						var ch1 = document.getElementById("checkedN_NR");
+						var ch2 = document.getElementById("checkedN_2");
+						var ch3 = document.getElementById("checkedN_3");
+						var ch4 = document.getElementById("checkedN_4")
+						if(show == "none") {
+							document.getElementById(N_1Ids[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(N_1Ids[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false;
+						}
+					}
+				}
+				function togN_2() {
+					for (i=0, max = N_2Ids.length; i<max; i++){
+						var show = document.getElementById(N_2Ids[i]).style.display;
+						var checklabel = document.getElementById("checkedN_2");
+						var allcheck = document.getElementById("AllN");
+						var ch1 = document.getElementById("checkedN_1");
+						var ch2 = document.getElementById("checkedN_NR");
+						var ch3 = document.getElementById("checkedN_3");
+						var ch4 = document.getElementById("checkedN_4")
+						if(show == "none") {
+							document.getElementById(N_2Ids[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(N_2Ids[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false;
+						}
+					}
+				}
+				function togN_3() {
+					for (i=0, max = N_3Ids.length; i<max; i++){
+						var show = document.getElementById(N_3Ids[i]).style.display;
+						var checklabel = document.getElementById("checkedN_3");
+						var allcheck = document.getElementById("AllN");
+						var ch1 = document.getElementById("checkedN_1");
+						var ch2 = document.getElementById("checkedN_2");
+						var ch3 = document.getElementById("checkedN_NR");
+						var ch4 = document.getElementById("checkedN_4")
+						if(show == "none") {
+							document.getElementById(N_3Ids[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(N_3Ids[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false;
+						}
+					}
+				}
+				function togN_4() {
+					for (i=0, max = N_4Ids.length; i<max; i++){
+						var show = document.getElementById(N_4Ids[i]).style.display;
+						var checklabel = document.getElementById("checkedN_4");
+						var allcheck = document.getElementById("AllN");
+						var ch1 = document.getElementById("checkedN_1");
+						var ch2 = document.getElementById("checkedN_2");
+						var ch3 = document.getElementById("checkedN_3");
+						var ch4 = document.getElementById("checkedN_NR")
+						if(show == "none") {
+							document.getElementById(N_4Ids[i]).style.display = "block";
+							if(ch1.checked == true && ch2.checked == true && ch3.checked == true && ch4.checked == true){
+								allcheck.checked = true; 
+							}
+						}
+				  		if(show != "none") {
+				    		document.getElementById(N_4Ids[i]).style.display = "none"; checklabel.checked = false; allcheck.checked = false;
+						}
+					}
+				}
+		/** SIG TOGGLING **/
+			function toggleSig(x) {
+				for (i=0, max = x.length; i<max; i++){
+					var show = document.getElementById(x[i]).style.display;
+					if(show == "none") {
+						document.getElementById(x[i]).style.display = "block";}
+			  		if(show != "none") {
+			    		document.getElementById(x[i]).style.display = "none";
+					}
+				}
+			}
+		/** Zoom enabling **/
+			function toggleZoom (){
+				var enablebutt = document.getElementById('enableb');
+				var disablebutt = document.getElementById('disableb');
+				if (disablebutt.style.display == "block"){
+					disablebutt.style.display = "none";
+					enablebutt.style.display = "block";
+				} else {
+					disablebutt.style.display = "block";
+					enablebutt.style.display = "none";
+				}
+			}
+	 </script>
+	<style>
+/* GENERAL STYLE FORMATTING *****************************/
+	/* Colour Guide **
+		Navigation
+			Grey bar bg: #f3f3f3
+			Dark Grey text: #595959
+			Green hover: #437043
+		Section dividers Grey: #ddd
+		Legends (strong / fade)
+			SR Nodes: fill #ccc border #878787
+		  All: / #ddd
+			Pain:	CP #666666
+					FM #E5D83E hover #f0e88f
+		 			AR #CC0033
+					AX #4200B4
+					NP #009933
+					OF #FF6600
+			
+		Article List
+			Container borders: #f3f3f3;
+			Table borders: #595959;
+			Row bg hover: #f3f3f3;
+			Header bg: #ddd;
+			Header hover green: #819881;
+		*/
+		 body {background-color: white;}
+		 * {box-sizing: border-box;}/* Font Formats */
+		 h1 {
+		 	font-family: sans-serif;
+		 	font-size: 1.5em;
+		 	letter-spacing: 2px;
+		 	line-height: 1;
+		 	margin-top: 30px;
+		 }
+		 h2 {
+		 	font-family: sans-serif;
+		 	font-size: 1em;
+		 	letter-spacing: 1.5px;
+		 	line-height: 1;
+		 	margin-bottom: 30px;
+		 }
+		 h3{
+		 	font-family: sans-serif;
+		 	font-size: 1em;
+		 	letter-spacing: 2.5px;
+		 	line-height: .75;
+		 }
+		 .header {
+		 	font-weight: bold;
+		 	letter-spacing: 1px;
+		 	color: black;
+		 }
+		 p {
+		 	padding: 0;
+		 	font-family: sans-serif;
+		 	font-size: 12px;
+		 }
+		 p a {color:#437043;}
+		 p a:hover {color:black;}
+	/* Page Style   */
+		 hr {
+		 	height:1px;
+		 	border-width:0;
+		 	color:lightgray;
+		 	background-color:#ddd;
+		 	margin-top: 15px;
+		 }
+		 div{
+		 	position:relative;
+		 	font-family: sans-serif;
+		 	font-size: 12px;
+		 	overflow: auto;
+		 }
+		 footer p {font-size: 10px}
+/* NETWORK VIZ ******************************************/
+	/* Viz + Legend Container */
+		 #vizcont {
+			position: relative;
+			display: table;
+    		width: 100%; 
+			border-collapse: collapse;
+			height: 1000px;
+			border: 1px solid #f3f3f3;
+			z-index: 50;
+			overflow: hidden;
+		 }
+		 #vizimgcont {
+		 	position: relative;
+		 	overflow: hidden;
+		 	display: table-cell;
+			border-collapse: collapse;
+			width: 100%;
+			height: 100%;
+			z-index: 70;
+		 }
+		 #vizlegendcont {
+		 	position: relative;
+		 	display: table-cell;
+		 	border-collapse: collapse;
+		 	background-color: #f8f8f8;
+		 	overflow: hidden;
+		 	min-width: 175px;
+		 	vertical-align: top;
+		 	height: 100%;
+		 	padding: 10px;
+		 	z-index: 52;
+		 }
+		 #vizcaption {
+		 	font-size: 9px; 
+		 	color:#595959;
+		 }
+	/* LEGENDS */
+		 .legend {
+		 	border-collapse: collapse;
+		 	margin-left:5px;
+		 	margin-top:5px;
+		 	width:90%;
+		 	font-size: 11px;
+		 	min-width: 130px;
+		 	color: #595959;
+		 }
+		 /* Clear floats (clearfix hack)  */
+		 .legend:after {content: ""; clear: both; display: table;}
+		 /** Legend icon svg placement container **/
+		 #legendicons {
+		 	position:absolute;
+		 }
+		 /** ZOOM LEGEND **/
+		 	 .legend button{
+				border: 1px solid #a1a1a1;
+				background-color: white;
+				color: #595959;
+				width: auto;
+				height: 18px;
+				padding: 1px 5px 1px 5px; 
+				margin: 2px 2px 0 0;
+				text-align: center;
+				font-size: 11px;
+				cursor: pointer; /* Pointer/hand icon */
+				float: left;
+		 	 }
+		 	 .legend button:hover {background-color: #a1a1a1;color: white;}
+		 	 .legend button:active {background-color: #595959;color: white;}
+		 	 .zoomable button:focus {background-color: black; color: white;}
+		 /** Checklist Styles **/
+				.checklist {
+				  display: block;
+				  position: relative;
+				  padding-left: 20px;
+				  margin-top: 3px;
+				  margin-bottom: 4px;
+				  cursor: pointer;
+				  -webkit-user-select: none;
+				  -moz-user-select: none;
+				  -ms-user-select: none;
+				  user-select: none;
+				}
+				/* Hide the browser's default checkbox */
+				.checklist input {
+				  position: absolute;
+				  opacity: 0;
+				  cursor: pointer;
+				  height: 0;
+				  width: 0;
+				}
+				/* Create a custom checkbox */
+				.check {
+				  position: absolute;
+				  top: 0;
+				  left: 2px;
+				  height: 12px;
+				  width: 12px;
+				  background-color: #fff;
+				  border: solid 1px #a1a1a1;
+				}
+				.checkN {
+				  position: absolute;
+				  top: 0;
+				  left: 2px;
+				  height: 12px;
+				  width: 12px;
+				  background-color: #fff;
+				  border: solid 1px #a1a1a1;
+				}
+				.boxN_NR {
+				  position: absolute;
+				  top: 0;
+				  left: 4px;
+				  margin-top:3px;
+				  height: 7px;
+				  width: 7px;
+				  background-color: #fff;
+				  border: solid 1px #a1a1a1;
+				  transform: rotate(45deg);
+				}
+				.boxN_1 {
+				  position: absolute;
+				  top: 0;
+				  left: 4px;
+				  margin-top:2px;
+				  height: 7px;
+				  width: 7px;
+				  background-color: #fff;
+				  border: solid 1px #a1a1a1;
+				  border-radius: 50%;
+				}
+				.boxN_2 {
+				  position: absolute;
+				  top: 0;
+				  left: 3px;
+				  margin-top:2px;
+				  height: 9px;
+				  width: 9px;
+				  background-color: #fff;
+				  border: solid 1px #a1a1a1;
+				  border-radius: 50%;
+				}
+				.boxN_3 {
+				  position: absolute;
+				  top: 0;
+				  left: 2px;
+				  height: 11px;
+				  width: 11px;
+				  background-color: #fff;
+				  border: solid 1px #a1a1a1;
+				  border-radius: 50%;
+				}
+				.boxN_4 {
+				  position: absolute;
+				  top: 0;
+				  left: 1px;
+				  height: 13px;
+				  width: 13px;
+				  background-color: #fff;
+				  border: solid 1px #a1a1a1;
+				  border-radius: 50%;
+				}
+				/* On mouse-over, add a border */
+				.checklist:hover input ~ .check, .checklist input:checked ~ .check:hover {
+					border: solid 2px #7a7a7a; z-index: 30;}
+				/* On mouse-over, add a border */
+				.checklist:hover input ~ .checkN, .checklist input:checked ~ .checkN:hover {
+					border: solid 2px #7a7a7a; z-index: 30;}
+
+				/* When the checkbox is checked, add a background */
+				.checklist input:checked ~ .check {
+					background-color: #ccc;}
+				/* Select All colouring only*/
+					/* On mouse-over*/
+					.checklist:hover input ~ .boxSelA, .checklist input:checked ~ .boxSelA:hover {background-color: #999;}
+					/* Checked colour */
+					.checklist input:checked ~ .boxSelA {background-color: #808080;}
+				/** Comparator Checkboxes **/
+					/* Active colouring only*/
+						/* On mouse-over*/
+						.checklist:hover input ~ .boxC_Act, .checklist input:checked ~ .boxC_Act:hover {background-color: #eb989e;}
+						/* Checked colour */
+						.checklist input:checked ~ .boxC_Act {background-color: #f70a1a;}
+					/* Mixed colouring only*/
+						/* On mouse-over*/
+						.checklist:hover input ~ .boxC_Mix, .checklist input:checked ~ .boxC_Mix:hover  {background-color: #ebe1a2;}
+						/* Checked colour */
+						.checklist input:checked ~ .boxC_Mix {background-color: #edd32b;}
+					/* Usual Care colouring only*/
+						/* On mouse-over*/
+						.checklist:hover input ~ .boxC_UC, .checklist input:checked ~ .boxC_UC:hover  {background-color: #a5e8cf;}
+						/* Checked colour */
+						.checklist input:checked ~ .boxC_UC {background-color: #1be098;}
+					/* Inactive colouring only*/
+						/* On mouse-over*/
+						.checklist:hover input ~ .boxC_InA, .checklist input:checked ~ .boxC_InA:hover  {background-color: #ccd6e8;}
+						/* Checked colour */
+						.checklist input:checked ~ .boxC_InA {background-color: #a6c2f7;}
+					/* NR colouring only*/
+						/* On mouse-over*/
+						.checklist:hover input ~ .boxC_NR, .checklist input:checked ~ .boxC_NR:hover  {background-color: #ddd;}
+						/* Checked colour */
+						.checklist input:checked ~ .boxC_NR {background-color: #bbb;}
+				/** Sample Size Checkboxes **/
+					/* TEST SAMP colouring only*/
+						/* On mouse-over*/
+						.checklist:hover input ~ .checkN, .checklist input:checked ~ .checkN:hover {background-color: #ccc;}
+						/* Checked colour */
+						.checklist input:checked ~ .checkN {background-color: #ccc;}
+
+
+	</style>
+	<title>Intervention vs Effect Size</title>
+</head>
+<!------- B O D Y --- B E G I N S --------->
+<body>
+<!-- Pain v ES VIZ--------------------------->
+	<section style="position:relative;">
+		<span class="anchor" id="viz"></span>
+		<div id="vizcont">
+			<div id="vizimgcont">
+			  <!-- FULL DATA VIZ SVG -->
+				<svg id="IntSVG" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 625 900" style="display: block; width: 100%; height: 100%; min-width: inherit; max-width: inherit; min-height: inherit; max-height: inherit;" z-index="80">
+					<style type="text/css">
+						.st0{fill:none;stroke:#DEDEDE;stroke-width:1.07;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st1{fill:none;stroke:#949494;stroke-width:1.07;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:1.07,3.2;}
+						.st2{fill:none;stroke:#696969;stroke-width:1.07;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st3{fill:none;stroke:#949494;stroke-width:1.07;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st4{fill:#4D4D4D;}
+						.st5{font-family:'Helvetica-Oblique';}
+						.st6{font-size:8px;}
+						.st7{fill:none;stroke:#333333;stroke-width:1.07;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st8{font-family:'Helvetica';}
+						.st9{font-size:11px;}
+						.st10{font-size:9px;}
+						.st11{clip-path:url(#SVGID_2_);fill:#EDEDED;}
+						.st12{clip-path:url(#SVGID_2_);}
+						.st13{fill:#1A1A1A;}
+						.st14{clip-path:url(#SVGID_4_);fill:#EDEDED;}
+						.st15{clip-path:url(#SVGID_4_);}
+						.st16{clip-path:url(#SVGID_6_);fill:#EDEDED;}
+						.st17{clip-path:url(#SVGID_6_);}
+						.st18{clip-path:url(#SVGID_8_);fill:#EDEDED;}
+						.st19{clip-path:url(#SVGID_8_);}
+						.st20{clip-path:url(#SVGID_10_);fill:#EDEDED;}
+						.st21{clip-path:url(#SVGID_10_);}
+						.st22{clip-path:url(#SVGID_12_);fill:#EDEDED;}
+						.st23{clip-path:url(#SVGID_12_);}
+						.st24{clip-path:url(#SVGID_14_);fill:#EDEDED;}
+						.st25{clip-path:url(#SVGID_14_);}
+						.st26{clip-path:url(#SVGID_16_);fill:#EDEDED;}
+						.st27{clip-path:url(#SVGID_16_);}
+						
+							.st28{opacity:0.949;fill:none;stroke:#949494;stroke-width:0.85;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st29{fill:#FFFFFF;}
+						.st30{fill:none;stroke:#949494;stroke-width:0.32;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st31{fill:#949494;}
+						.st32{font-family:'Helvetica-Bold';}
+						.st33{font-size:3px;}
+						
+							.st34{opacity:0.949;fill:none;stroke:#EDD32B;stroke-width:0.85;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st35{fill:none;stroke:#EDD32B;stroke-width:0.32;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st36{fill:#EDD32B;}
+						.st37{opacity:0.502;fill:#1BE098;}
+						.st38{fill:none;stroke:#1BE098;stroke-width:0.71;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st39{fill:none;stroke:#1BE098;stroke-width:0.32;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st40{fill:#1BE098;}
+						.st41{opacity:0.502;fill:#A6C2F7;}
+						.st42{fill:none;stroke:#A6C2F7;stroke-width:0.71;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st43{fill:none;stroke:#A6C2F7;stroke-width:0.32;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st44{fill:#A6C2F7;}
+						
+							.st45{opacity:0.949;fill:none;stroke:#A6C2F7;stroke-width:0.85;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st46{opacity:0.502;fill:#EDD32B;}
+						.st47{fill:none;stroke:#EDD32B;stroke-width:0.71;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st48{opacity:0.502;fill:#F70A1A;}
+						.st49{fill:none;stroke:#F70A1A;stroke-width:0.71;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st50{fill:none;stroke:#F70A1A;stroke-width:0.32;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						.st51{fill:#F70A1A;}
+						.st52{opacity:0.502;fill:#949494;}
+						.st53{fill:none;stroke:#949494;stroke-width:0.71;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						
+							.st54{opacity:0.949;fill:none;stroke:#F70A1A;stroke-width:0.85;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+						
+							.st55{opacity:0.949;fill:none;stroke:#1BE098;stroke-width:0.85;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+					</style>
+					<g id="GridP">
+						<g id="FM_Grid">
+							<line class="st0" x1="112.6" y1="745.4" x2="603.6" y2="745.4"/>
+							<line class="st0" x1="112.6" y1="767.3" x2="603.6" y2="767.3"/>
+							<line class="st0" x1="112.6" y1="789.2" x2="603.6" y2="789.2"/>
+							<line class="st0" x1="112.6" y1="811.2" x2="603.6" y2="811.2"/>
+							<line class="st1" x1="581.3" y1="826.5" x2="581.3" y2="730.1"/>
+							<line class="st1" x1="503.6" y1="826.5" x2="503.6" y2="730.1"/>
+							<line class="st2" x1="451.9" y1="826.5" x2="451.9" y2="730.1"/>
+							<line class="st1" x1="400.1" y1="826.5" x2="400.1" y2="730.1"/>
+							<line class="st1" x1="322.5" y1="826.5" x2="322.5" y2="730.1"/>
+							<line class="st1" x1="244.9" y1="826.5" x2="244.9" y2="730.1"/>
+							<rect id="FM_Border" x="112.6" y="730.1" class="st3" width="491" height="96.4"/>
+						</g>
+						<g id="CP_Grid">
+							<line class="st0" x1="112.6" y1="643.6" x2="603.6" y2="643.6"/>
+							<line class="st0" x1="112.6" y1="665.5" x2="603.6" y2="665.5"/>
+							<line class="st0" x1="112.6" y1="687.4" x2="603.6" y2="687.4"/>
+							<line class="st0" x1="112.6" y1="709.3" x2="603.6" y2="709.3"/>
+							<line class="st1" x1="581.3" y1="724.6" x2="581.3" y2="628.2"/>
+							<line class="st1" x1="503.6" y1="724.6" x2="503.6" y2="628.2"/>
+							<line class="st2" x1="451.9" y1="724.6" x2="451.9" y2="628.2"/>
+							<line class="st1" x1="400.1" y1="724.6" x2="400.1" y2="628.2"/>
+							<line class="st1" x1="322.5" y1="724.6" x2="322.5" y2="628.2"/>
+							<line class="st1" x1="244.9" y1="724.6" x2="244.9" y2="628.2"/>
+							<rect id="CP_border_2_" x="112.6" y="628.2" class="st3" width="491" height="96.4"/>
+						</g>
+						<g id="AX_Grid">
+							<line class="st0" x1="112.6" y1="541.7" x2="603.6" y2="541.7"/>
+							<line class="st0" x1="112.6" y1="563.6" x2="603.6" y2="563.6"/>
+							<line class="st0" x1="112.6" y1="585.5" x2="603.6" y2="585.5"/>
+							<line class="st0" x1="112.6" y1="607.4" x2="603.6" y2="607.4"/>
+							<line class="st1" x1="581.3" y1="622.8" x2="581.3" y2="526.4"/>
+							<line class="st1" x1="503.6" y1="622.8" x2="503.6" y2="526.4"/>
+							<line class="st2" x1="451.9" y1="622.8" x2="451.9" y2="526.4"/>
+							<line class="st1" x1="400.1" y1="622.8" x2="400.1" y2="526.4"/>
+							<line class="st1" x1="322.5" y1="622.8" x2="322.5" y2="526.4"/>
+							<line class="st1" x1="244.9" y1="622.8" x2="244.9" y2="526.4"/>
+							<rect id="AX_border" x="112.6" y="526.4" class="st3" width="491" height="96.4"/>
+						</g>
+						<g id="AR_Grid">
+							<line class="st0" x1="112.6" y1="439.9" x2="603.6" y2="439.9"/>
+							<line class="st0" x1="112.6" y1="461.8" x2="603.6" y2="461.8"/>
+							<line class="st0" x1="112.6" y1="483.7" x2="603.6" y2="483.7"/>
+							<line class="st0" x1="112.6" y1="505.6" x2="603.6" y2="505.6"/>
+							<line class="st1" x1="581.3" y1="520.9" x2="581.3" y2="424.5"/>
+							<line class="st1" x1="503.6" y1="520.9" x2="503.6" y2="424.5"/>
+							<line class="st2" x1="451.9" y1="520.9" x2="451.9" y2="424.5"/>
+							<line class="st1" x1="400.1" y1="520.9" x2="400.1" y2="424.5"/>
+							<line class="st1" x1="322.5" y1="520.9" x2="322.5" y2="424.5"/>
+							<line class="st1" x1="244.9" y1="520.9" x2="244.9" y2="424.5"/>
+							<rect id="AR_border_2_" x="112.6" y="424.5" class="st3" width="491" height="96.4"/>
+						</g>
+						<g id="MSK_Grid">
+							<line class="st0" x1="112.6" y1="338" x2="603.6" y2="338"/>
+							<line class="st0" x1="112.6" y1="359.9" x2="603.6" y2="359.9"/>
+							<line class="st0" x1="112.6" y1="381.8" x2="603.6" y2="381.8"/>
+							<line class="st0" x1="112.6" y1="403.7" x2="603.6" y2="403.7"/>
+							<line class="st1" x1="581.3" y1="419" x2="581.3" y2="322.7"/>
+							<line class="st1" x1="503.6" y1="419" x2="503.6" y2="322.7"/>
+							<line class="st2" x1="451.9" y1="419" x2="451.9" y2="322.7"/>
+							<line class="st1" x1="400.1" y1="419" x2="400.1" y2="322.7"/>
+							<line class="st1" x1="322.5" y1="419" x2="322.5" y2="322.7"/>
+							<line class="st1" x1="244.9" y1="419" x2="244.9" y2="322.7"/>
+							<rect id="MSK_border" x="112.6" y="322.7" class="st3" width="491" height="96.4"/>
+						</g>
+						<g id="NP_Grid">
+							<line class="st0" x1="112.6" y1="236.1" x2="603.6" y2="236.1"/>
+							<line class="st0" x1="112.6" y1="258" x2="603.6" y2="258"/>
+							<line class="st0" x1="112.6" y1="279.9" x2="603.6" y2="279.9"/>
+							<line class="st0" x1="112.6" y1="301.8" x2="603.6" y2="301.8"/>
+							<line class="st1" x1="581.3" y1="317.2" x2="581.3" y2="220.8"/>
+							<line class="st1" x1="503.6" y1="317.2" x2="503.6" y2="220.8"/>
+							<line class="st2" x1="451.9" y1="317.2" x2="451.9" y2="220.8"/>
+							<line class="st1" x1="400.1" y1="317.2" x2="400.1" y2="220.8"/>
+							<line class="st1" x1="322.5" y1="317.2" x2="322.5" y2="220.8"/>
+							<line class="st1" x1="244.9" y1="317.2" x2="244.9" y2="220.8"/>
+							<rect id="NP_border_2_" x="112.6" y="220.8" class="st3" width="491" height="96.4"/>
+						</g>
+						<g id="OF_Grid">
+							<line class="st0" x1="112.6" y1="134.3" x2="603.6" y2="134.3"/>
+							<line class="st0" x1="112.6" y1="156.2" x2="603.6" y2="156.2"/>
+							<line class="st0" x1="112.6" y1="178.1" x2="603.6" y2="178.1"/>
+							<line class="st0" x1="112.6" y1="200" x2="603.6" y2="200"/>
+							<line class="st1" x1="581.3" y1="215.3" x2="581.3" y2="118.9"/>
+							<line class="st1" x1="503.6" y1="215.3" x2="503.6" y2="118.9"/>
+							<line class="st2" x1="451.9" y1="215.3" x2="451.9" y2="118.9"/>
+							<line class="st1" x1="400.1" y1="215.3" x2="400.1" y2="118.9"/>
+							<line class="st1" x1="322.5" y1="215.3" x2="322.5" y2="118.9"/>
+							<line class="st1" x1="244.9" y1="215.3" x2="244.9" y2="118.9"/>
+							<rect id="OF_border" x="112.6" y="118.9" class="st3" width="491" height="96.4"/>
+						</g>
+						<g id="HA_Grid">
+							<line class="st0" x1="112.6" y1="32.4" x2="603.6" y2="32.4"/>
+							<line class="st0" x1="112.6" y1="54.3" x2="603.6" y2="54.3"/>
+							<line class="st0" x1="112.6" y1="76.2" x2="603.6" y2="76.2"/>
+							<line class="st0" x1="112.6" y1="98.1" x2="603.6" y2="98.1"/>
+							<line class="st1" x1="581.3" y1="113.5" x2="581.3" y2="17.1"/>
+							<line class="st1" x1="503.6" y1="113.5" x2="503.6" y2="17.1"/>
+							<line class="st2" x1="451.9" y1="113.5" x2="451.9" y2="17.1"/>
+							<line class="st1" x1="400.1" y1="113.5" x2="400.1" y2="17.1"/>
+							<line class="st1" x1="322.5" y1="113.5" x2="322.5" y2="17.1"/>
+							<line class="st1" x1="244.9" y1="113.5" x2="244.9" y2="17.1"/>
+							<rect id="HA_border_2_" x="112.6" y="17.1" class="st3" width="491" height="96.4"/>
+						</g>
+						<g id="Y-Axis_MarksP">
+							<text transform="matrix(1 0 0 1 91.2598 35.2803)" class="st4 st5 st6">High</text>
+							<text transform="matrix(1 0 0 1 92.1499 57.1802)" class="st4 st5 st6">Mod</text>
+							<text transform="matrix(1 0 0 1 93.1499 79.0898)"><tspan x="0" y="0" class="st4 st5 st6">L</tspan><tspan x="4.4" y="0" class="st4 st5 st6">o</tspan><tspan x="8.8" y="0" class="st4 st5 st6">w</tspan></text>
+							<text transform="matrix(1 0 0 1 88.4702 100.9902)"><tspan x="0" y="0" class="st4 st5 st6">C</tspan><tspan x="5.8" y="0" class="st4 st5 st6">r</tspan><tspan x="8.6" y="0" class="st4 st5 st6">it L</tspan></text>
+							<line class="st7" x1="109.9" y1="32.4" x2="112.6" y2="32.4"/>
+							<line class="st7" x1="109.9" y1="54.3" x2="112.6" y2="54.3"/>
+							<line class="st7" x1="109.9" y1="76.2" x2="112.6" y2="76.2"/>
+							<line class="st7" x1="109.9" y1="98.1" x2="112.6" y2="98.1"/>
+							<text transform="matrix(1 0 0 1 91.2598 137.1401)" class="st4 st5 st6">High</text>
+							<text transform="matrix(1 0 0 1 92.1499 159.04)" class="st4 st5 st6">Mod</text>
+							<text transform="matrix(1 0 0 1 93.1499 180.9502)"><tspan x="0" y="0" class="st4 st5 st6">L</tspan><tspan x="4.4" y="0" class="st4 st5 st6">o</tspan><tspan x="8.8" y="0" class="st4 st5 st6">w</tspan></text>
+							<text transform="matrix(1 0 0 1 88.4702 202.8501)"><tspan x="0" y="0" class="st4 st5 st6">C</tspan><tspan x="5.8" y="0" class="st4 st5 st6">r</tspan><tspan x="8.6" y="0" class="st4 st5 st6">it L</tspan></text>
+							<line class="st7" x1="109.9" y1="134.3" x2="112.6" y2="134.3"/>
+							<line class="st7" x1="109.9" y1="156.2" x2="112.6" y2="156.2"/>
+							<line class="st7" x1="109.9" y1="178.1" x2="112.6" y2="178.1"/>
+							<line class="st7" x1="109.9" y1="200" x2="112.6" y2="200"/>
+							<text transform="matrix(1 0 0 1 91.2598 239)" class="st4 st5 st6">High</text>
+							<text transform="matrix(1 0 0 1 92.1499 260.8999)" class="st4 st5 st6">Mod</text>
+							<text transform="matrix(1 0 0 1 93.1499 282.8101)"><tspan x="0" y="0" class="st4 st5 st6">L</tspan><tspan x="4.4" y="0" class="st4 st5 st6">o</tspan><tspan x="8.8" y="0" class="st4 st5 st6">w</tspan></text>
+							<text transform="matrix(1 0 0 1 88.4702 304.7197)"><tspan x="0" y="0" class="st4 st5 st6">C</tspan><tspan x="5.8" y="0" class="st4 st5 st6">r</tspan><tspan x="8.6" y="0" class="st4 st5 st6">it L</tspan></text>
+							<line class="st7" x1="109.9" y1="236.1" x2="112.6" y2="236.1"/>
+							<line class="st7" x1="109.9" y1="258" x2="112.6" y2="258"/>
+							<line class="st7" x1="109.9" y1="279.9" x2="112.6" y2="279.9"/>
+							<line class="st7" x1="109.9" y1="301.8" x2="112.6" y2="301.8"/>
+							<text transform="matrix(1 0 0 1 91.2598 340.8599)" class="st4 st5 st6">High</text>
+							<text transform="matrix(1 0 0 1 92.1499 362.77)" class="st4 st5 st6">Mod</text>
+							<text transform="matrix(1 0 0 1 93.1499 384.6699)"><tspan x="0" y="0" class="st4 st5 st6">L</tspan><tspan x="4.4" y="0" class="st4 st5 st6">o</tspan><tspan x="8.8" y="0" class="st4 st5 st6">w</tspan></text>
+							<text transform="matrix(1 0 0 1 88.4702 406.5801)"><tspan x="0" y="0" class="st4 st5 st6">C</tspan><tspan x="5.8" y="0" class="st4 st5 st6">r</tspan><tspan x="8.6" y="0" class="st4 st5 st6">it L</tspan></text>
+							<line class="st7" x1="109.9" y1="338" x2="112.6" y2="338"/>
+							<line class="st7" x1="109.9" y1="359.9" x2="112.6" y2="359.9"/>
+							<line class="st7" x1="109.9" y1="381.8" x2="112.6" y2="381.8"/>
+							<line class="st7" x1="109.9" y1="403.7" x2="112.6" y2="403.7"/>
+							<text transform="matrix(1 0 0 1 91.2598 442.7197)" class="st4 st5 st6">High</text>
+							<text transform="matrix(1 0 0 1 92.1499 464.6299)" class="st4 st5 st6">Mod</text>
+							<text transform="matrix(1 0 0 1 93.1499 486.5303)"><tspan x="0" y="0" class="st4 st5 st6">L</tspan><tspan x="4.4" y="0" class="st4 st5 st6">o</tspan><tspan x="8.8" y="0" class="st4 st5 st6">w</tspan></text>
+							<text transform="matrix(1 0 0 1 88.4702 508.4404)"><tspan x="0" y="0" class="st4 st5 st6">C</tspan><tspan x="5.8" y="0" class="st4 st5 st6">r</tspan><tspan x="8.6" y="0" class="st4 st5 st6">it L</tspan></text>
+							<line class="st7" x1="109.9" y1="439.9" x2="112.6" y2="439.9"/>
+							<line class="st7" x1="109.9" y1="461.8" x2="112.6" y2="461.8"/>
+							<line class="st7" x1="109.9" y1="483.7" x2="112.6" y2="483.7"/>
+							<line class="st7" x1="109.9" y1="505.6" x2="112.6" y2="505.6"/>
+							<text transform="matrix(1 0 0 1 91.2598 544.5898)" class="st4 st5 st6">High</text>
+							<text transform="matrix(1 0 0 1 92.1499 566.4902)" class="st4 st5 st6">Mod</text>
+							<text transform="matrix(1 0 0 1 93.1499 588.4004)"><tspan x="0" y="0" class="st4 st5 st6">L</tspan><tspan x="4.4" y="0" class="st4 st5 st6">o</tspan><tspan x="8.8" y="0" class="st4 st5 st6">w</tspan></text>
+							<text transform="matrix(1 0 0 1 88.4702 610.2998)"><tspan x="0" y="0" class="st4 st5 st6">C</tspan><tspan x="5.8" y="0" class="st4 st5 st6">r</tspan><tspan x="8.6" y="0" class="st4 st5 st6">it L</tspan></text>
+							<line class="st7" x1="109.9" y1="541.7" x2="112.6" y2="541.7"/>
+							<line class="st7" x1="109.9" y1="563.6" x2="112.6" y2="563.6"/>
+							<line class="st7" x1="109.9" y1="585.5" x2="112.6" y2="585.5"/>
+							<line class="st7" x1="109.9" y1="607.4" x2="112.6" y2="607.4"/>
+							<text transform="matrix(1 0 0 1 91.2598 646.4502)" class="st4 st5 st6">High</text>
+							<text transform="matrix(1 0 0 1 92.1499 668.3496)" class="st4 st5 st6">Mod</text>
+							<text transform="matrix(1 0 0 1 93.1499 690.2598)"><tspan x="0" y="0" class="st4 st5 st6">L</tspan><tspan x="4.4" y="0" class="st4 st5 st6">o</tspan><tspan x="8.8" y="0" class="st4 st5 st6">w</tspan></text>
+							<text transform="matrix(1 0 0 1 88.4702 712.1602)"><tspan x="0" y="0" class="st4 st5 st6">C</tspan><tspan x="5.8" y="0" class="st4 st5 st6">r</tspan><tspan x="8.6" y="0" class="st4 st5 st6">it L</tspan></text>
+							<line class="st7" x1="109.9" y1="643.6" x2="112.6" y2="643.6"/>
+							<line class="st7" x1="109.9" y1="665.5" x2="112.6" y2="665.5"/>
+							<line class="st7" x1="109.9" y1="687.4" x2="112.6" y2="687.4"/>
+							<line class="st7" x1="109.9" y1="709.3" x2="112.6" y2="709.3"/>
+							<text transform="matrix(1 0 0 1 91.2598 748.3096)" class="st4 st5 st6">High</text>
+							<text transform="matrix(1 0 0 1 92.1499 770.21)" class="st4 st5 st6">Mod</text>
+							<text transform="matrix(1 0 0 1 93.1499 792.1201)"><tspan x="0" y="0" class="st4 st5 st6">L</tspan><tspan x="4.4" y="0" class="st4 st5 st6">o</tspan><tspan x="8.8" y="0" class="st4 st5 st6">w</tspan></text>
+							<text transform="matrix(1 0 0 1 88.4702 814.0195)"><tspan x="0" y="0" class="st4 st5 st6">C</tspan><tspan x="5.8" y="0" class="st4 st5 st6">r</tspan><tspan x="8.6" y="0" class="st4 st5 st6">it L</tspan></text>
+							<line class="st7" x1="109.9" y1="745.4" x2="112.6" y2="745.4"/>
+							<line class="st7" x1="109.9" y1="767.3" x2="112.6" y2="767.3"/>
+							<line class="st7" x1="109.9" y1="789.2" x2="112.6" y2="789.2"/>
+							<line class="st7" x1="109.9" y1="811.2" x2="112.6" y2="811.2"/>
+						</g>
+						<text transform="matrix(1 0 0 1 314.6602 855.21)"><tspan x="0" y="0" class="st8 st9">Ef</tspan><tspan x="10.4" y="0" class="st8 st9">f</tspan><tspan x="13.1" y="0" class="st8 st9">ect Si</tspan><tspan x="40.6" y="0" class="st8 st9">z</tspan><tspan x="46" y="0" class="st8 st9">e (SMD)</tspan></text>
+						<g id="X-Axis_MarksP">
+							<line class="st7" x1="581.3" y1="829.2" x2="581.3" y2="826.5"/>
+							<line class="st7" x1="503.6" y1="829.2" x2="503.6" y2="826.5"/>
+							<line class="st7" x1="451.9" y1="829.2" x2="451.9" y2="826.5"/>
+							<line class="st7" x1="400.1" y1="829.2" x2="400.1" y2="826.5"/>
+							<line class="st7" x1="322.5" y1="829.2" x2="322.5" y2="826.5"/>
+							<line class="st7" x1="244.9" y1="829.2" x2="244.9" y2="826.5"/>
+							<text transform="matrix(1 0 0 1 575.0303 837.8799)" class="st4 st8 st10">0.5</text>
+							<text transform="matrix(1 0 0 1 497.4004 837.8799)" class="st4 st8 st10">0.2</text>
+							<text transform="matrix(1 0 0 1 445.6396 837.8799)" class="st4 st8 st10">0.0</text>
+							<text transform="matrix(1 0 0 1 391.2598 837.8799)" class="st4 st8 st10">&ndash;0.2</text>
+							<text transform="matrix(1 0 0 1 313.6299 837.8799)" class="st4 st8 st10">&ndash;0.5</text>
+							<text transform="matrix(1 0 0 1 235.9902 837.8799)" class="st4 st8 st10">&ndash;0.8</text>
+						</g>
+						<g id="Facet_Labels">
+							<g>
+								<defs>
+									<rect id="SVGID_1_" x="14.5" y="17.1" width="71.4" height="96.4"/>
+								</defs>
+								<clipPath id="SVGID_2_">
+									<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+								</clipPath>
+								<rect x="14.5" y="17.1" class="st11" width="71.4" height="96.4"/>
+								<g class="st12">
+									<text transform="matrix(1 0 0 1 29.6499 68.4902)" class="st13 st8 st10">Headache</text>
+								</g>
+							</g>
+							<g>
+								<defs>
+									<rect id="SVGID_3_" x="14.5" y="118.9" width="71.4" height="96.4"/>
+								</defs>
+								<clipPath id="SVGID_4_">
+									<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+								</clipPath>
+								<rect x="14.5" y="118.9" class="st14" width="71.4" height="96.4"/>
+								<g class="st15">
+									<text transform="matrix(1 0 0 1 32.2998 170.3501)"><tspan x="0" y="0" class="st13 st8 st10">Oro</tspan><tspan x="15" y="0" class="st13 st8 st10">f</tspan><tspan x="17.2" y="0" class="st13 st8 st10">acial</tspan></text>
+								</g>
+							</g>
+							<g>
+								<defs>
+									<rect id="SVGID_5_" x="14.5" y="220.8" width="71.4" height="96.4"/>
+								</defs>
+								<clipPath id="SVGID_6_">
+									<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
+								</clipPath>
+								<rect x="14.5" y="220.8" class="st16" width="71.4" height="96.4"/>
+								<g class="st17">
+									<text transform="matrix(1 0 0 1 25.9102 272.2197)" class="st13 st8 st10">Neuropathic</text>
+								</g>
+							</g>
+							<g>
+								<defs>
+									<rect id="SVGID_7_" x="14.5" y="322.7" width="71.4" height="96.4"/>
+								</defs>
+								<clipPath id="SVGID_8_">
+									<use xlink:href="#SVGID_7_"  style="overflow:visible;"/>
+								</clipPath>
+								<rect x="14.5" y="322.7" class="st18" width="71.4" height="96.4"/>
+								<g class="st19">
+									<text transform="matrix(1 0 0 1 18.25 374.0801)"><tspan x="0" y="0" class="st13 st8 st10">Musculos</tspan><tspan x="38" y="0" class="st13 st8 st10">k</tspan><tspan x="42.3" y="0" class="st13 st8 st10">eletal</tspan></text>
+								</g>
+							</g>
+							<g>
+								<defs>
+									<rect id="SVGID_9_" x="14.5" y="424.5" width="71.4" height="96.4"/>
+								</defs>
+								<clipPath id="SVGID_10_">
+									<use xlink:href="#SVGID_9_"  style="overflow:visible;"/>
+								</clipPath>
+								<rect x="14.5" y="424.5" class="st20" width="71.4" height="96.4"/>
+								<g class="st21">
+									<text transform="matrix(1 0 0 1 34.6699 475.9404)"><tspan x="0" y="0" class="st13 st8 st10">A</tspan><tspan x="6" y="0" class="st13 st8 st10">r</tspan><tspan x="9.4" y="0" class="st13 st8 st10">th</tspan><tspan x="16.9" y="0" class="st13 st8 st10">r</tspan><tspan x="20" y="0" class="st13 st8 st10">itis</tspan></text>
+								</g>
+							</g>
+							<g>
+								<defs>
+									<rect id="SVGID_11_" x="14.5" y="526.4" width="71.4" height="96.4"/>
+								</defs>
+								<clipPath id="SVGID_12_">
+									<use xlink:href="#SVGID_11_"  style="overflow:visible;"/>
+								</clipPath>
+								<rect x="14.5" y="526.4" class="st22" width="71.4" height="96.4"/>
+								<g class="st23">
+									<text transform="matrix(1 0 0 1 40.4102 577.7998)" class="st13 st8 st10">Axial</text>
+								</g>
+							</g>
+							<g>
+								<defs>
+									<rect id="SVGID_13_" x="14.5" y="628.2" width="71.4" height="96.4"/>
+								</defs>
+								<clipPath id="SVGID_14_">
+									<use xlink:href="#SVGID_13_"  style="overflow:visible;"/>
+								</clipPath>
+								<rect x="14.5" y="628.2" class="st24" width="71.4" height="96.4"/>
+								<g class="st25">
+									<text transform="matrix(1 0 0 1 24.5898 679.6602)"><tspan x="0" y="0" class="st13 st8 st10">Chronic </tspan><tspan x="33.5" y="0" class="st13 st8 st10">P</tspan><tspan x="39.2" y="0" class="st13 st8 st10">ain</tspan></text>
+								</g>
+							</g>
+							<g>
+								<defs>
+									<rect id="SVGID_15_" x="14.5" y="730.1" width="71.4" height="96.4"/>
+								</defs>
+								<clipPath id="SVGID_16_">
+									<use xlink:href="#SVGID_15_"  style="overflow:visible;"/>
+								</clipPath>
+								<rect x="14.5" y="730.1" class="st26" width="71.4" height="96.4"/>
+								<g class="st27">
+									<text transform="matrix(1 0 0 1 24.5698 781.5303)"><tspan x="0" y="0" class="st13 st8 st10">Fibro</tspan><tspan x="20.5" y="0" class="st13 st8 st10">m</tspan><tspan x="27.9" y="0" class="st13 st8 st10">y</tspan><tspan x="32.2" y="0" class="st13 st8 st10">algia</tspan></text>
+								</g>
+							</g>
+						</g>
+					</g>
+					<g id="PlotsP">
+						<g id="HA_Plot_NonSi" class="NonSi">
+							<g id="HA2" class="PC0 PN3">
+								<path id="_x3C_path_x3E__2_" class="st28" d="M177.6,98.2c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									S177.6,102.5,177.6,98.2"/>
+								<g id="HA2L" class="PLabel">
+									<rect x="189.2" y="94" class="st29" width="11.9" height="6.5"/>
+									<rect x="189.2" y="94" class="st30" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 191.3301 98.3203)" class="st31 st32 st33">&ndash;1.03</text>
+								</g>
+							</g>
+							<g id="HA1" class="PC3 PN4">
+								<path id="_x3C_path_x3E__51_" class="st34" d="M375.7,97.3c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9
+									C379.7,106.3,375.7,102.3,375.7,97.3"/>
+								<g id="HA1L" class="PLabel">
+									<rect x="388.5" y="88.9" class="st29" width="11.9" height="6.5"/>
+									<rect x="388.5" y="88.9" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 390.6104 93.25)" class="st36 st32 st33">&ndash;0.26</text>
+								</g>
+							</g>
+						</g>
+						<g id="OF_Plot_Sig" class="Sig">
+							<g id="OF4" class="PC2 PN2">
+								<path class="st37" d="M339.6,198.8c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C342.4,205,339.6,202.2,339.6,198.8"/>
+								<path class="st38" d="M339.6,198.8c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C342.4,205,339.6,202.2,339.6,198.8"/>
+								<g id="OF4L" class="PLabel">
+									<rect x="329.6" y="196.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="329.6" y="196.7" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 331.7598 201.0498)" class="st40 st32 st33">&ndash;0.41</text>
+								</g>
+							</g>
+							<g id="OF3" class="PC2 PN3">
+								<path class="st37" d="M374.1,199.5c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C377.6,207.3,374.1,203.8,374.1,199.5"/>
+								<path class="st38" d="M374.1,199.5c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C377.6,207.3,374.1,203.8,374.1,199.5"/>
+								<g id="OF3L" class="PLabel">
+									<rect x="385.7" y="196.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="385.7" y="196.7" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 387.8604 201.0601)" class="st40 st32 st33">&ndash;0.27</text>
+								</g>
+							</g>
+							<g id="OF2" class="PC2 PN4">
+								<path class="st37" d="M360.3,200.1c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,8.9-9,8.9C364.3,209,360.3,205,360.3,200.1"/>
+								<path class="st38" d="M360.3,200.1c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,8.9-9,8.9C364.3,209,360.3,205,360.3,200.1"/>
+								<g id="OF2L" class="PLabel">
+									<rect x="352.5" y="196.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="352.5" y="196.8" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 354.6401 201.0601)" class="st40 st32 st33">&ndash;0.32</text>
+								</g>
+							</g>
+							<g id="OF1" class="PC2 PN4">
+								<path class="st37" d="M388.8,158.9c0-4.9,4-8.9,9-8.9c4.9,0,9,4,9,8.9c0,4.9-4,9-9,9C392.8,167.9,388.8,163.8,388.8,158.9"/>
+								<path class="st38" d="M388.8,158.9c0-4.9,4-8.9,9-8.9c4.9,0,9,4,9,8.9c0,4.9-4,9-9,9C392.8,167.9,388.8,163.8,388.8,158.9"/>
+								<g id="OF1L" class="PLabel">
+									<rect x="382" y="154.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="382" y="154.8" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 384.1299 159.0898)" class="st40 st32 st33">&ndash;0.21</text>
+								</g>
+							</g>
+						</g>
+						<g id="NP_Plot_Sig" class="Sig">
+							<g id="NP4" class="PC1 PN3">
+								<path class="st41" d="M127.2,303.2c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C130.7,311,127.2,307.5,127.2,303.2"/>
+								<path class="st42" d="M127.2,303.2c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C130.7,311,127.2,307.5,127.2,303.2"/>
+								<g id="NP4L" class="PLabel">
+									<rect x="117.6" y="300.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="117.6" y="300.6" class="st43" width="11.9" height="6.5"/>
+									<text id="_x2212_1.22_2_" transform="matrix(1 0 0 1 119.79 304.9199)" class="st44 st32 st33">&ndash;1.22</text>
+								</g>
+							</g>
+							<g id="NP3" class="PC1 PN3">
+								<path class="st41" d="M138.8,300.8c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C142.3,308.6,138.8,305.1,138.8,300.8"/>
+								<path class="st42" d="M138.8,300.8c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C142.3,308.6,138.8,305.1,138.8,300.8"/>
+								<g id="NP3L" class="PLabel">
+									<rect x="150.9" y="297.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="150.9" y="297.6" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 153.0898 301.9199)" class="st44 st32 st33">&ndash;1.18</text>
+								</g>
+							</g>
+							<g id="NP2" class="PC1 PN3">
+								<path class="st41" d="M356.1,300.2c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C359.6,308,356.1,304.5,356.1,300.2"/>
+								<path class="st42" d="M356.1,300.2c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C359.6,308,356.1,304.5,356.1,300.2"/>
+								<g id="NP2L" class="PLabel">
+									<rect x="348.1" y="299.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="348.1" y="299.5" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 350.3101 303.8101)" class="st44 st32 st33">&ndash;0.34</text>
+								</g>
+							</g>
+						</g>
+						<g id="NP_Plot_NonSi" class="NonSi">
+							<g id="NP1" class="PC1 PN5">
+								<path id="_x3C_path_x3E_" class="st45" d="M426.3,236.1c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C430.8,246.1,426.3,241.6,426.3,236.1"/>
+								<g id="NP1L" class="PLabel">
+									<rect x="440.2" y="234" class="st29" width="11.9" height="6.5"/>
+									<rect x="440.2" y="234" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 442.3203 238.2598)" class="st44 st32 st33">&ndash;0.06</text>
+								</g>
+							</g>
+						</g>
+						<g id="MSK_Plot_Sig" class="Sig">
+							<g id="MSK6" class="PC3 PN5">
+								<path class="st46" d="M333.1,361.6c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C337.5,371.6,333.1,367.1,333.1,361.6"/>
+								<path class="st47" d="M333.1,361.6c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C337.5,371.6,333.1,367.1,333.1,361.6"/>
+								<g id="MSK6L" class="PLabel">
+									<rect x="348.2" y="357.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="348.2" y="357.7" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 350.3701 362)" class="st36 st32 st33">&ndash;0.42</text>
+								</g>
+							</g>
+							<g id="MSK5" class="PC3 PN4">
+								<path class="st46" d="M378.1,404.8c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,9-9,9C382.1,413.8,378.1,409.8,378.1,404.8"/>
+								<path class="st47" d="M378.1,404.8c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,9-9,9C382.1,413.8,378.1,409.8,378.1,404.8"/>
+								<g id="MSK5L" class="PLabel">
+									<rect x="370.6" y="401.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="370.6" y="401.4" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 372.8096 405.7002)" class="st36 st32 st33">&ndash;0.25</text>
+								</g>
+							</g>
+							<g id="MSK4" class="PC3 PN5">
+								<path class="st46" d="M403.2,401.1c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C407.7,411.1,403.2,406.6,403.2,401.1"/>
+								<path class="st47" d="M403.2,401.1c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C407.7,411.1,403.2,406.6,403.2,401.1"/>
+								<g id="MSK4L" class="PLabel">
+									<rect x="416.9" y="398.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="416.9" y="398.6" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 419.04 402.8999)" class="st36 st32 st33">&ndash;0.15</text>
+								</g>
+							</g>
+						</g>
+						<g id="MSK_Plot_NonSi" class="NonSi">
+							<g id="MSK3" class="PC3 PN5">
+								<path id="_x3C_path_x3E__46_" class="st34" d="M387.5,382.2c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C392.1,392.3,387.5,387.8,387.5,382.2"/>
+								<g id="MSK3L" class="PLabel">
+									<rect x="380.5" y="378.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="380.5" y="378.6" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 382.6504 382.8799)" class="st36 st32 st33">&ndash;0.21</text>
+								</g>
+							</g>
+							<g id="MSK2" class="PC3 PN5">
+								<path id="_x3C_path_x3E__4_" class="st34" d="M403,377.7c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C407.5,387.7,403,383.2,403,377.7"/>
+								<g id="MSK2L" class="PLabel">
+									<rect x="418.6" y="374.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="418.6" y="374.6" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 420.8096 378.8701)" class="st36 st32 st33">&ndash;0.15</text>
+								</g>
+							</g>
+							<g id="MSK1" class="PC3 PN4">
+								<path id="_x3C_path_x3E__42_" class="st34" d="M432.4,402.7c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9
+									C436.5,411.7,432.4,407.6,432.4,402.7"/>
+								<g id="MSK1L" class="PLabel">
+									<rect x="445.3" y="398.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="445.3" y="398.6" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 447.4199 402.9199)" class="st36 st32 st33">&ndash;0.04</text>
+								</g>
+							</g>
+						</g>
+						<g id="AR_Plot_Sig" class="Sig">
+							<g id="AR13" class="PC3 PN2">
+								<path class="st46" d="M199.2,505.5c0-3.4,2.8-6.2,6.2-6.2s6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2S199.2,508.9,199.2,505.5"/>
+								<path class="st47" d="M199.2,505.5c0-3.4,2.8-6.2,6.2-6.2s6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2S199.2,508.9,199.2,505.5"/>
+								<g id="AR13L" class="PLabel">
+									<rect x="189.8" y="502.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="189.8" y="502.5" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 191.9199 506.7803)" class="st36 st32 st33">&ndash;0.95</text>
+								</g>
+							</g>
+							<g id="AR12" class="PC3 PN4">
+								<path class="st46" d="M401.6,438.3c0-4.9,4-9,9-9c4.9,0,9,4,9,9s-4,9-9,9C405.6,447.3,401.6,443.2,401.6,438.3"/>
+								<path class="st47" d="M401.6,438.3c0-4.9,4-9,9-9c4.9,0,9,4,9,9s-4,9-9,9C405.6,447.3,401.6,443.2,401.6,438.3"/>
+								<g id="AR12L" class="PLabel">
+									<rect x="415.8" y="435.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="415.8" y="435.6" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 417.9502 439.9297)" class="st36 st32 st33">&ndash;0.16</text>
+								</g>
+							</g>
+							<g id="AR11" class="PC3 PN4">
+								<path class="st46" d="M389.2,508.8c0-4.9,4-8.9,8.9-8.9c4.9,0,9,4,9,8.9c0,4.9-4,9-9,9C393.3,517.8,389.2,513.8,389.2,508.8"/>
+								<path class="st47" d="M389.2,508.8c0-4.9,4-8.9,8.9-8.9c4.9,0,9,4,9,8.9c0,4.9-4,9-9,9C393.3,517.8,389.2,513.8,389.2,508.8"/>
+								<g id="AR11L" class="PLabel">
+									<rect x="405.3" y="510.5" class="st29" width="11.8" height="6.5"/>
+									<rect x="405.3" y="510.5" class="st35" width="11.8" height="6.5"/>
+									<text transform="matrix(1 0 0 1 407.4348 514.7903)" class="st36 st32 st33">&ndash;0.21</text>
+								</g>
+							</g>
+							<g id="AR10" class="PC3 PN5">
+								<path class="st46" d="M384.9,466.4c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C389.4,476.3,384.9,471.9,384.9,466.4"/>
+								<path class="st47" d="M384.9,466.4c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C389.4,476.3,384.9,471.9,384.9,466.4"/>
+								<g id="AR10L" class="PLabel">
+									<rect x="376.3" y="463.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="376.3" y="463.5" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 378.5 467.8203)" class="st36 st32 st33">&ndash;0.22</text>
+								</g>
+							</g>
+							<g id="AR9" class="PC3 PN5">
+								<path class="st46" d="M405.6,464.4c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C410.1,474.4,405.6,469.9,405.6,464.4"/>
+								<path class="st47" d="M405.6,464.4c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C410.1,474.4,405.6,469.9,405.6,464.4"/>
+								<g id="AR9L" class="PLabel">
+									<rect x="419.6" y="470.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="419.6" y="470.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 421.7446 474.5865)" class="st36 st32 st33">&ndash;0.14</text>
+								</g>
+							</g>
+							<g id="AR8" class="PC3 PN1">
+								
+									<rect x="335.9" y="505.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -259.6887 387.6605)" class="st46" width="4.4" height="4.4"/>
+								
+									<rect x="335.9" y="505.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -259.6887 387.6605)" class="st47" width="4.4" height="4.4"/>
+								<g id="AR8L" class="PLabel">
+									<rect x="324.9" y="508.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="324.9" y="508.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 327.04 512.6504)" class="st36 st32 st33">&ndash;0.44</text>
+								</g>
+							</g>
+							<g id="AR7" class="PC3 PN5">
+								<path class="st46" d="M382.4,503.8c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C386.9,513.7,382.4,509.2,382.4,503.8"/>
+								<path class="st47" d="M382.4,503.8c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C386.9,513.7,382.4,509.2,382.4,503.8"/>
+								<g id="AR7L" class="PLabel">
+									<rect x="396.1" y="490.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="396.1" y="490.6" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 398.2446 494.8746)" class="st36 st32 st33">&ndash;0.23</text>
+								</g>
+							</g>
+							<g id="AR6" class="PC4 PN5">
+								<path class="st48" d="M369.5,499.5c0-5.5,4.5-10,10-10c5.5,0,9.9,4.5,9.9,10c0,5.5-4.5,10-9.9,10
+									C373.9,509.5,369.5,505,369.5,499.5"/>
+								<path class="st49" d="M369.5,499.5c0-5.5,4.5-10,10-10c5.5,0,9.9,4.5,9.9,10c0,5.5-4.5,10-9.9,10
+									C373.9,509.5,369.5,505,369.5,499.5"/>
+								<g id="AR6L" class="PLabel">
+									<rect x="363.5" y="487.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="363.5" y="487.5" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 365.67 491.855)" class="st51 st32 st33">&ndash;0.28</text>
+								</g>
+							</g>
+							<g id="AR5" class="PC3 PN1">
+								
+									<rect x="367.3" y="503.9" transform="matrix(0.706 -0.7082 0.7082 0.706 -249.8208 410.487)" class="st46" width="4.4" height="4.4"/>
+								
+									<rect x="367.3" y="503.9" transform="matrix(0.706 -0.7082 0.7082 0.706 -249.8208 410.487)" class="st47" width="4.4" height="4.4"/>
+								<g id="AR5L" class="PLabel">
+									<rect x="357" y="507.3" class="st29" width="11.7" height="6.5"/>
+									<rect x="357" y="507.3" class="st35" width="11.7" height="6.5"/>
+									<text transform="matrix(1 0 0 1 359.16 511.6504)" class="st36 st32 st33">&ndash;0.32</text>
+								</g>
+							</g>
+						</g>
+						<g id="AR_Plot_NonSi" class="NonSi">
+							<g id="AR4" class="PC3 PN3">
+								<path class="st34" d="M317.3,458.5c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8S317.3,462.9,317.3,458.5"/>
+								<g id="AR4L" class="PLabel">
+									<rect x="308.5" y="455.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="308.5" y="455.4" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 310.6699 459.6797)" class="st36 st32 st33">&ndash;0.49</text>
+								</g>
+							</g>
+							<g id="AR3" class="PC1 PN2">
+								<path id="_x3C_path_x3E__40_" class="st45" d="M391.2,459c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C394,465.3,391.2,462.5,391.2,459"/>
+								<g id="AR3L" class="PLabel">
+									<rect x="385.4" y="448.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="385.4" y="448.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 387.5648 452.7449)" class="st44 st32 st33">&ndash;0.21</text>
+								</g>
+							</g>
+							<g id="AR2" class="PC3 PN5">
+								<path class="st34" d="M418.5,456.9c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C423,466.9,418.5,462.4,418.5,456.9
+									"/>
+								<g id="AR2L" class="PLabel">
+									<rect x="435.7" y="454.1" class="st29" width="11.9" height="6.5"/>
+									<rect x="435.7" y="454.1" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 437.8203 458.4199)" class="st36 st32 st33">&ndash;0.09</text>
+								</g>
+							</g>
+							<g id="AR1" class="PC3 PN4">
+								<path class="st34" d="M334.1,499.4c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9C338.2,508.4,334.1,504.4,334.1,499.4"/>
+								<g id="AR1L" class="PLabel">
+									<rect x="348.3" y="493.9" class="st29" width="11.9" height="6.5"/>
+									<rect x="348.3" y="493.9" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 350.4199 498.2305)" class="st36 st32 st33">&ndash;0.42</text>
+								</g>
+							</g>
+						</g>
+						<g id="AX_Plot_Sig" class="Sig">
+							<g id="AX29" class="PC3 PN2">
+								<path class="st46" d="M251.6,540.2c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2s-2.8,6.2-6.2,6.2
+									C254.4,546.5,251.6,543.7,251.6,540.2"/>
+								<path class="st47" d="M251.6,540.2c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2s-2.8,6.2-6.2,6.2
+									C254.4,546.5,251.6,543.7,251.6,540.2"/>
+								<g id="AX29L" class="PLabel">
+									<rect x="242.1" y="537.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="242.1" y="537.2" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 244.21 541.5052)" class="st36 st32 st33">&ndash;0.75</text>
+								</g>
+							</g>
+							<g id="AX28" class="PC4 PN2">
+								<path class="st48" d="M287.8,609.8c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C290.6,616,287.8,613.2,287.8,609.8"/>
+								<path class="st49" d="M287.8,609.8c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C290.6,616,287.8,613.2,287.8,609.8"/>
+								<g id="AX28L" class="PLabel">
+									<rect x="297.7" y="605.9" class="st29" width="11.9" height="6.5"/>
+									<rect x="297.7" y="605.9" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 299.8953 610.2049)" class="st51 st32 st33">&ndash;0.61</text>
+								</g>
+							</g>
+							<g id="AX27" class="PC3 PN2">
+								<path class="st46" d="M293.1,544.2c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2s-2.8,6.2-6.2,6.2
+									C295.9,550.5,293.1,547.7,293.1,544.2"/>
+								<path class="st47" d="M293.1,544.2c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2s-2.8,6.2-6.2,6.2
+									C295.9,550.5,293.1,547.7,293.1,544.2"/>
+								<g id="AX27L" class="PLabel">
+									<rect x="283.5" y="540.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="283.5" y="540.4" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 285.6299 544.71)" class="st36 st32 st33">&ndash;0.59</text>
+								</g>
+							</g>
+							<g id="AX26" class="PC4 PN2">
+								<path class="st48" d="M553.8,582.5c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C556.5,588.7,553.8,585.9,553.8,582.5"/>
+								<path class="st49" d="M553.8,582.5c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C556.5,588.7,553.8,585.9,553.8,582.5"/>
+								<g id="AX26L" class="PLabel">
+									<rect x="563.3" y="579.9" class="st29" width="10.2" height="6.5"/>
+									<rect x="563.3" y="579.9" class="st50" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 565.5026 584.2202)" class="st51 st32 st33">0.42</text>
+								</g>
+							</g>
+							<g id="AX25" class="PC1 PN2">
+								<path class="st41" d="M236.1,608.4c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C238.9,614.6,236.1,611.8,236.1,608.4"/>
+								<path class="st42" d="M236.1,608.4c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C238.9,614.6,236.1,611.8,236.1,608.4"/>
+								<g id="AX25L" class="PLabel">
+									<rect x="226.2" y="605.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="226.2" y="605.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 228.3388 609.7457)" class="st44 st32 st33">&ndash;0.81</text>
+								</g>
+							</g>
+							<g id="AX24" class="PC1 PN1">
+								
+									<rect x="271.3" y="608.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -351.4615 372.1218)" class="st41" width="4.4" height="4.4"/>
+								
+									<rect x="271.3" y="608.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -351.4615 372.1218)" class="st42" width="4.4" height="4.4"/>
+								<g id="AX24L" class="PLabel">
+									<rect x="260.8" y="611.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="260.8" y="611.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 262.955 615.6851)" class="st44 st32 st33">&ndash;0.69</text>
+								</g>
+							</g>
+							<g id="AX23" class="PC0 PN1">
+								
+									<rect x="324.1" y="606.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -334.9587 409.0325)" class="st52" width="4.4" height="4.4"/>
+								
+									<rect x="324.1" y="606.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -334.9587 409.0325)" class="st53" width="4.4" height="4.4"/>
+								<g id="AX23L" class="PLabel">
+									<rect x="312.4" y="610.1" class="st29" width="12.2" height="6.5"/>
+									<rect x="312.4" y="610.1" class="st30" width="12.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 314.5699 614.3851)" class="st31 st32 st33">&ndash;0.49</text>
+								</g>
+							</g>
+							<g id="AX22" class="PC0 PN1">
+								
+									<rect x="346.9" y="606.9" transform="matrix(0.7082 -0.706 0.706 0.7082 -328.1733 424.1736)" class="st52" width="4.4" height="4.4"/>
+								
+									<rect x="346.9" y="606.9" transform="matrix(0.7082 -0.706 0.706 0.7082 -328.1733 424.1736)" class="st53" width="4.4" height="4.4"/>
+								<g id="AX22L" class="PLabel">
+									<rect x="337.9" y="610.1" class="st29" width="10.6" height="6.5"/>
+									<rect x="337.9" y="610.1" class="st30" width="10.6" height="6.5"/>
+									<text transform="matrix(1 0 0 1 340.035 614.3901)" class="st31 st32 st33">&ndash;0.4</text>
+								</g>
+							</g>
+							<g id="AX21" class="PC4 PN1">
+								
+									<rect x="382.4" y="604.9" transform="matrix(0.706 -0.7082 0.7082 0.706 -316.9107 450.9422)" class="st48" width="4.4" height="4.4"/>
+								
+									<rect x="382.4" y="604.9" transform="matrix(0.706 -0.7082 0.7082 0.706 -316.9107 450.9422)" class="st49" width="4.4" height="4.4"/>
+								<g id="AX21L" class="PLabel">
+									<rect x="386.1" y="599.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="386.1" y="599.8" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 388.2242 604.0947)" class="st51 st32 st33">&ndash;0.26</text>
+								</g>
+							</g>
+						</g>
+						<g id="AX_Plot_NonSi" class="NonSi">
+							<g id="AX20" class="PC3 PN2">
+								<path id="_x3C_path_x3E__26_" class="st34" d="M388.7,542.3c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C391.5,548.5,388.7,545.7,388.7,542.3"/>
+								<g id="AX20L" class="PLabel">
+									<rect x="378.9" y="539" class="st29" width="11.9" height="6.5"/>
+									<rect x="378.9" y="539" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 381.0254 543.3405)" class="st36 st32 st33">&ndash;0.22</text>
+								</g>
+							</g>
+							<g id="AX19" class="PC1 PN2">
+								<path id="_x3C_path_x3E__36_" class="st45" d="M430.1,609.9c0-3.5,2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									S430.1,613.4,430.1,609.9"/>
+								<g id="AX19L" class="PLabel">
+									<rect x="439.7" y="612.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="439.7" y="612.8" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 441.8442 617.0704)" class="st44 st32 st33">&ndash;0.06</text>
+								</g>
+							</g>
+							<g id="AX18" class="PC4 PN2">
+								<path id="_x3C_path_x3E__24_" class="st54" d="M318.5,585.4c0-3.5,2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									S318.5,588.8,318.5,585.4"/>
+								<g id="AX18L" class="PLabel">
+									<rect x="308.4" y="582.1" class="st29" width="12.2" height="6.5"/>
+									<rect x="308.4" y="582.1" class="st50" width="12.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 310.5249 586.4397)" class="st51 st32 st33">&ndash;0.49</text>
+								</g>
+							</g>
+							<g id="AX17" class="PC4 PN2">
+								<path id="_x3C_path_x3E__32_" class="st54" d="M383.1,588.3c0-3.5,2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									S383.1,591.7,383.1,588.3"/>
+								<g id="AX17L" class="PLabel">
+									<rect x="373.4" y="588.3" class="st29" width="12" height="6.5"/>
+									<rect x="373.4" y="588.3" class="st50" width="12" height="6.5"/>
+									<text transform="matrix(1 0 0 1 375.515 592.6495)" class="st51 st32 st33">&ndash;0.24</text>
+								</g>
+							</g>
+							<g id="AX16" class="PC1 PN2">
+								<path id="_x3C_path_x3E__22_" class="st45" d="M417.1,589.4c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C419.9,595.7,417.1,592.8,417.1,589.4"/>
+								<g id="AX16L" class="PLabel">
+									<rect x="409.1" y="591.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="409.1" y="591.2" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 411.2149 595.5302)" class="st44 st32 st33">&ndash;0.11</text>
+								</g>
+							</g>
+							<g id="AX15" class="PC4 PN2">
+								<path id="_x3C_path_x3E__28_" class="st54" d="M442.6,589.1c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C445.5,595.4,442.6,592.5,442.6,589.1"/>
+								<g id="AX15L" class="PLabel">
+									<rect x="435.8" y="592" class="st29" width="11" height="6.5"/>
+									<rect x="435.8" y="592" class="st50" width="11" height="6.5"/>
+									<text transform="matrix(1 0 0 1 437.9119 596.3055)" class="st51 st32 st33">&ndash;0.01</text>
+								</g>
+							</g>
+							<g id="AX14" class="PC4 PN2">
+								<path id="_x3C_path_x3E__20_" class="st54" d="M450.8,589.2c0-3.5,2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3s-2.8,6.3-6.3,6.3
+									S450.8,592.7,450.8,589.2"/>
+								<g id="AX14L" class="PLabel">
+									<rect x="457.2" y="594.1" class="st29" width="10.1" height="6.5"/>
+									<rect x="457.2" y="594.1" class="st50" width="10.1" height="6.5"/>
+									<text transform="matrix(1 0 0 1 459.3928 598.425)" class="st51 st32 st33">0.02</text>
+								</g>
+							</g>
+							<g id="AX13" class="PC4 PN2">
+								<path id="_x3C_path_x3E__23_" class="st54" d="M463.7,586.6c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C466.5,592.9,463.7,590.1,463.7,586.6"/>
+								<g id="AX13L" class="PLabel">
+									<rect x="473.5" y="583.1" class="st29" width="10.2" height="6.5"/>
+									<rect x="473.5" y="583.1" class="st50" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 475.6545 587.4152)" class="st51 st32 st33">0.07</text>
+								</g>
+							</g>
+							<g id="AX12" class="PC4 PN2">
+								<path id="_x3C_path_x3E__18_" class="st54" d="M510.3,588.3c0-3.5,2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3s-2.8,6.3-6.3,6.3
+									S510.3,591.8,510.3,588.3"/>
+								<g id="AX12L" class="PLabel">
+									<rect x="501.9" y="585.6" class="st29" width="10.2" height="6.5"/>
+									<rect x="501.9" y="585.6" class="st50" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 504.0703 589.9354)" class="st51 st32 st33">0.25</text>
+								</g>
+							</g>
+							<g id="AX11" class="PC4 PN2">
+								<path id="_x3C_path_x3E__19_" class="st54" d="M524.9,583.1c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C527.7,589.4,524.9,586.6,524.9,583.1"/>
+								<g id="AX11L" class="PLabel">
+									<rect x="534.2" y="580.4" class="st29" width="10.2" height="6.5"/>
+									<rect x="534.2" y="580.4" class="st50" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 536.3727 584.7296)" class="st51 st32 st33">0.31</text>
+								</g>
+							</g>
+							<g id="AX10" class="PC1 PN2">
+								<path id="_x3C_path_x3E__16_" class="st45" d="M357.6,605.5c0-3.5,2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									S357.6,608.9,357.6,605.5"/>
+								<g id="AX10L" class="PLabel">
+									<rect x="352.5" y="597.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="352.5" y="597.3" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 354.6699 601.6602)" class="st44 st32 st33">&ndash;0.34</text>
+								</g>
+							</g>
+							<g id="AX9" class="PC4 PN2">
+								<path id="_x3C_path_x3E__15_" class="st54" d="M551.8,604.8c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C554.6,611.1,551.8,608.3,551.8,604.8"/>
+								<g id="AX9L" class="PLabel">
+									<rect x="562.4" y="602.4" class="st29" width="10.2" height="6.5"/>
+									<rect x="562.4" y="602.4" class="st50" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 564.5303 606.7305)" class="st51 st32 st33">0.41</text>
+								</g>
+							</g>
+							<g id="AX8" class="PC3 PN3">
+								<path id="_x3C_path_x3E__14_" class="st34" d="M363.8,605.5c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									S363.8,609.8,363.8,605.5"/>
+								<g id="AX8L" class="PLabel">
+									<rect x="373.1" y="611" class="st29" width="11.9" height="6.5"/>
+									<rect x="373.1" y="611" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 375.2305 615.3301)" class="st36 st32 st33">&ndash;0.31</text>
+								</g>
+							</g>
+							<g id="AX7" class="PC4 PN3">
+								<path id="_x3C_path_x3E__11_" class="st54" d="M402.7,563.8c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									S402.7,568.1,402.7,563.8"/>
+								<g id="AX7L" class="PLabel">
+									<rect x="414.5" y="566.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="414.5" y="566.5" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 416.6951 570.8302)" class="st51 st32 st33">&ndash;0.16</text>
+								</g>
+							</g>
+							<g id="AX6" class="PC1 PN2">
+								<path id="_x3C_path_x3E__12_" class="st45" d="M391.2,563.5c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C394.1,569.8,391.2,566.9,391.2,563.5"/>
+								<g id="AX6L" class="PLabel">
+									<rect x="381.2" y="560.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="381.2" y="560.2" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 383.3496 564.5302)" class="st44 st32 st33">&ndash;0.21</text>
+								</g>
+							</g>
+							<g id="AX5" class="PC4 PN2">
+								<path id="_x3C_path_x3E__7_" class="st54" d="M420,583.7c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C422.8,590,420,587.1,420,583.7"/>
+								<g id="AX5L" class="PLabel">
+									<rect x="428.1" y="573" class="st29" width="10.8" height="6.5"/>
+									<rect x="428.1" y="573" class="st50" width="10.8" height="6.5"/>
+									<text transform="matrix(1 0 0 1 430.2873 577.3702)" class="st51 st32 st33">&ndash;0.1</text>
+								</g>
+							</g>
+							<g id="AX4" class="PC4 PN4">
+								<path id="_x3C_path_x3E__10_" class="st54" d="M429.9,560.4c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9
+									C433.9,569.5,429.9,565.4,429.9,560.4"/>
+								<g id="AX4L" class="PLabel">
+									<rect x="425.5" y="550" class="st29" width="11.9" height="6.5"/>
+									<rect x="425.5" y="550" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 427.7004 554.3347)" class="st51 st32 st33">&ndash;0.05</text>
+								</g>
+							</g>
+							<g id="AX3" class="PC4 PN2">
+								<path id="_x3C_path_x3E__5_" class="st54" d="M450.8,581.1c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C453.6,587.4,450.8,584.6,450.8,581.1"/>
+								<g id="AX3L" class="PLabel">
+									<rect x="460.3" y="572.2" class="st29" width="10.2" height="6.5"/>
+									<rect x="460.3" y="572.2" class="st50" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 462.43 576.5248)" class="st51 st32 st33">0.02</text>
+								</g>
+							</g>
+							<g id="AX2" class="PC4 PN4">
+								<path id="_x3C_path_x3E__8_" class="st54" d="M455.7,560.5c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9
+									C459.8,569.5,455.7,565.4,455.7,560.5"/>
+								<g id="AX2L" class="PLabel">
+									<rect x="470.6" y="551.9" class="st29" width="10.2" height="6.5"/>
+									<rect x="470.6" y="551.9" class="st50" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 472.7349 556.2404)" class="st51 st32 st33">0.05</text>
+								</g>
+							</g>
+							<g id="AX1" class="PC1 PN2">
+								<path id="_x3C_path_x3E__1_" class="st45" d="M384.5,582.6c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3s-2.8,6.3-6.3,6.3
+									C387.4,588.9,384.5,586,384.5,582.6"/>
+								<g id="AX1L" class="PLabel">
+									<rect x="375.6" y="572.2" class="st29" width="12" height="6.5"/>
+									<rect x="375.6" y="572.2" class="st43" width="12" height="6.5"/>
+									<text transform="matrix(1 0 0 1 377.7449 576.5297)" class="st44 st32 st33">&ndash;0.24</text>
+								</g>
+							</g>
+						</g>
+						<g id="CP_Plot_Sig" class="Sig">
+							<g id="CP42" class="PC3 PN4">
+								<path class="st46" d="M316.3,662.8c0-4.9,4-9,8.9-9c4.9,0,9,4,9,9c0,4.9-4,9-9,9C320.4,671.7,316.3,667.7,316.3,662.8"/>
+								<path class="st47" d="M316.3,662.8c0-4.9,4-9,8.9-9c4.9,0,9,4,9,9c0,4.9-4,9-9,9C320.4,671.7,316.3,667.7,316.3,662.8"/>
+								<g id="CP42L" class="PLabel">
+									<rect x="308.5" y="659.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="308.5" y="659.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 310.6698 663.6397)" class="st36 st32 st33">&ndash;0.49</text>
+								</g>
+							</g>
+							<g id="CP41" class="PC3 PN3">
+								<path class="st46" d="M364.1,709.2c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C367.6,717,364.1,713.5,364.1,709.2"/>
+								<path class="st47" d="M364.1,709.2c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C367.6,717,364.1,713.5,364.1,709.2"/>
+								<g id="CP41L" class="PLabel">
+									<rect x="375.2" y="705.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="375.2" y="705.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 377.4051 709.6255)" class="st36 st32 st33">&ndash;0.31</text>
+								</g>
+							</g>
+							<g id="CP40" class="PC3 PN4">
+								<path class="st46" d="M396.4,643.3c0-4.9,4-9,9-9s9,4,9,9c0,4.9-4,9-9,9S396.4,648.2,396.4,643.3"/>
+								<path class="st47" d="M396.4,643.3c0-4.9,4-9,9-9s9,4,9,9c0,4.9-4,9-9,9S396.4,648.2,396.4,643.3"/>
+								<g id="CP40L" class="PLabel">
+									<rect x="389" y="642.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="389" y="642.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 391.1904 646.6104)" class="st36 st32 st33">&ndash;0.18</text>
+								</g>
+							</g>
+							<g id="CP39" class="PC3 PN5">
+								<path class="st46" d="M403,679.9c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C407.5,689.8,403,685.3,403,679.9"/>
+								<path class="st47" d="M403,679.9c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C407.5,689.8,403,685.3,403,679.9"/>
+								<g id="CP39L" class="PLabel">
+									<rect x="397.1" y="668.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="397.1" y="668.8" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 399.2348 673.1397)" class="st36 st32 st33">&ndash;0.15</text>
+								</g>
+							</g>
+							<g id="CP38" class="PC3 PN3">
+								<path class="st46" d="M231.9,689.6c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8S231.9,693.9,231.9,689.6"/>
+								<path class="st47" d="M231.9,689.6c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8S231.9,693.9,231.9,689.6"/>
+								<g id="CP38L" class="PLabel">
+									<rect x="222.4" y="686.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="222.4" y="686.2" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 224.5439 690.5103)" class="st36 st32 st33">&ndash;0.82</text>
+								</g>
+							</g>
+							<g id="CP37" class="PC1 PN2">
+								<path class="st41" d="M261.8,641c0-3.4,2.8-6.2,6.2-6.2s6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2S261.8,644.4,261.8,641"/>
+								<path class="st42" d="M261.8,641c0-3.4,2.8-6.2,6.2-6.2s6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2S261.8,644.4,261.8,641"/>
+								<g id="CP37L" class="PLabel">
+									<rect x="252.4" y="637.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="252.4" y="637.7" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 254.575 642.0447)" class="st44 st32 st33">&ndash;0.71</text>
+								</g>
+							</g>
+							<g id="CP36" class="PC1 PN2">
+								<path class="st41" d="M292.9,641.2c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C295.7,647.4,292.9,644.6,292.9,641.2"/>
+								<path class="st42" d="M292.9,641.2c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C295.7,647.4,292.9,644.6,292.9,641.2"/>
+								<g id="CP36L" class="PLabel">
+									<rect x="284" y="637.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="284" y="637.7" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 286.155 642.045)" class="st44 st32 st33">&ndash;0.59</text>
+								</g>
+							</g>
+							<g id="CP35" class="PC3 PN2">
+								<path class="st46" d="M311.3,646.7c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2s-2.8,6.2-6.2,6.2
+									C314.1,652.9,311.3,650.1,311.3,646.7"/>
+								<path class="st47" d="M311.3,646.7c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2s-2.8,6.2-6.2,6.2
+									C314.1,652.9,311.3,650.1,311.3,646.7"/>
+								<g id="CP35L" class="PLabel">
+									<rect x="303.7" y="649.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="303.7" y="649.4" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 305.8649 653.7001)" class="st36 st32 st33">&ndash;0.52</text>
+								</g>
+							</g>
+							<g id="CP34" class="PC3 PN2">
+								<path class="st46" d="M311.1,640c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C313.9,646.2,311.1,643.4,311.1,640"/>
+								<path class="st47" d="M311.1,640c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C313.9,646.2,311.1,643.4,311.1,640"/>
+								<g id="CP34L" class="PLabel">
+									<rect x="321.7" y="631.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="321.7" y="631.5" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 323.8451 635.825)" class="st36 st32 st33">&ndash;0.52</text>
+								</g>
+							</g>
+							<g id="CP33" class="PC4 PN2">
+								<path class="st48" d="M355.3,646.8c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C358.1,653,355.3,650.2,355.3,646.8"/>
+								<path class="st49" d="M355.3,646.8c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C358.1,653,355.3,650.2,355.3,646.8"/>
+								<g id="CP33L" class="PLabel">
+									<rect x="364.9" y="638.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="364.9" y="638.5" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 367.0703 642.8496)" class="st51 st32 st33">&ndash;0.35</text>
+								</g>
+							</g>
+							<g id="CP32" class="PC0 PN4">
+								<path class="st52" d="M329.3,662.6c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,9-9,9C333.3,671.5,329.3,667.5,329.3,662.6"/>
+								<path class="st53" d="M329.3,662.6c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,9-9,9C333.3,671.5,329.3,667.5,329.3,662.6"/>
+								<g id="CP32L" class="PLabel">
+									<rect x="341.8" y="660.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="341.8" y="660.3" class="st30" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 343.9102 664.5703)" class="st31 st32 st33">&ndash;0.44</text>
+								</g>
+							</g>
+							<g id="CP31" class="PC2 PN4">
+								<path class="st37" d="M344.6,688.6c0-4.9,4-9,9-9c4.9,0,9,4,9,9s-4,9-9,9C348.6,697.6,344.6,693.5,344.6,688.6"/>
+								<path class="st38" d="M344.6,688.6c0-4.9,4-9,9-9c4.9,0,9,4,9,9s-4,9-9,9C348.6,697.6,344.6,693.5,344.6,688.6"/>
+								<g id="CP31L" class="PLabel">
+									<rect x="337.3" y="677.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="337.3" y="677.7" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 339.505 681.9902)" class="st40 st32 st33">&ndash;0.38</text>
+								</g>
+							</g>
+							<g id="CP30" class="PC1 PN1">
+								<polygon class="st41" points="353.7,711.2 356.9,708.1 353.7,704.9 350.6,708.1 			"/>
+								<polygon class="st42" points="353.7,711.2 356.9,708.1 353.7,704.9 350.6,708.1 			"/>
+								<g id="CP30L" class="PLabel">
+									<rect x="340.5" y="700.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="340.5" y="700.6" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 342.6248 704.9604)" class="st44 st32 st33">&ndash;0.38</text>
+								</g>
+							</g>
+							<g id="CP29" class="PC2 PN4">
+								<path class="st37" d="M375.5,687.3c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,9-9,9C379.5,696.2,375.5,692.2,375.5,687.3"/>
+								<path class="st38" d="M375.5,687.3c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,9-9,9C379.5,696.2,375.5,692.2,375.5,687.3"/>
+								<g id="CP29L" class="PLabel">
+									<rect x="368.9" y="694" class="st29" width="11.9" height="6.5"/>
+									<rect x="368.9" y="694" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 371.0146 698.3247)" class="st40 st32 st33">&ndash;0.26</text>
+								</g>
+							</g>
+							<g id="CP28" class="PC1 PN1">
+								
+									<rect x="258.3" y="708.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -426.2367 392.39)" class="st41" width="4.4" height="4.4"/>
+								
+									<rect x="258.3" y="708.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -426.2367 392.39)" class="st42" width="4.4" height="4.4"/>
+								<g id="CP28L" class="PLabel">
+									<rect x="247.1" y="711.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="247.1" y="711.7" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 249.275 716.0452)" class="st44 st32 st33">&ndash;0.74</text>
+								</g>
+							</g>
+							<g id="CP27" class="PC3 PN1">
+								
+									<rect x="284.2" y="708.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -418.6299 410.7065)" class="st46" width="4.4" height="4.4"/>
+								
+									<rect x="284.2" y="708.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -418.6299 410.7065)" class="st47" width="4.4" height="4.4"/>
+								<g id="CP27L" class="PLabel">
+									<rect x="272.9" y="703.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="272.9" y="703.4" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 275.0349 707.735)" class="st36 st32 st33">&ndash;0.64</text>
+								</g>
+							</g>
+							<g id="CP26" class="PC3 PN1">
+								
+									<rect x="379.7" y="682.4" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -372.2586 470.5481)" class="st46" width="4.4" height="4.4"/>
+								
+									<rect x="379.7" y="682.4" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -372.2586 470.5481)" class="st47" width="4.4" height="4.4"/>
+								<g id="CP26L" class="PLabel">
+									<rect x="383.1" y="676.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="383.1" y="676.8" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 385.2748 681.0696)" class="st36 st32 st33">&ndash;0.27</text>
+								</g>
+							</g>
+							<g id="CP25" class="PC0 PN5">
+								<path class="st52" d="M392.6,713.2c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C397,723.2,392.6,718.7,392.6,713.2
+									"/>
+								<path class="st53" d="M392.6,713.2c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C397,723.2,392.6,718.7,392.6,713.2
+									"/>
+								<g id="CP25L" class="PLabel">
+									<rect x="384.6" y="715.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="384.6" y="715.5" class="st30" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 386.7598 719.8604)" class="st31 st32 st33">&ndash;0.19</text>
+								</g>
+							</g>
+							<g id="CP24" class="PC1 PN1">
+								
+									<rect x="356.7" y="708.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -397.1233 461.8428)" class="st41" width="4.4" height="4.4"/>
+								
+									<rect x="356.7" y="708.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -397.1233 461.8428)" class="st42" width="4.4" height="4.4"/>
+								<g id="CP24L" class="PLabel">
+									<rect x="346.5" y="712.1" class="st29" width="11.9" height="6.5"/>
+									<rect x="346.5" y="712.1" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 348.615 716.4)" class="st44 st32 st33">&ndash;0.36</text>
+								</g>
+							</g>
+						</g>
+						<g id="CP_Plot_NonSi" class="NonSi">
+							<g id="CP23" class="PC1 PN2">
+								<path class="st45" d="M399.1,705.4c0-3.5,2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3S399.1,708.8,399.1,705.4"/>
+								<g id="CP23L" class="PLabel">
+									<rect x="391" y="701.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="391" y="701.3" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 393.1747 705.5748)" class="st44 st32 st33">&ndash;0.18</text>
+								</g>
+							</g>
+							<g id="CP21" class="PC4 PN3">
+								<path class="st54" d="M431.1,713.5c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C434.7,721.3,431.1,717.8,431.1,713.5"/>
+								<g id="CP21L" class="PLabel">
+									<rect x="443.4" y="710" class="st29" width="11.9" height="6.5"/>
+									<rect x="443.4" y="710" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 445.5654 714.3152)" class="st51 st32 st33">&ndash;0.05</text>
+								</g>
+							</g>
+							<g id="CP22" class="PC3 PN4">
+								<path class="st34" d="M411.9,713.7c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9C415.9,722.8,411.9,718.7,411.9,713.7"/>
+								<g id="CP22L" class="PLabel">
+									<rect x="424.6" y="716.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="424.6" y="716.4" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 426.7455 720.7545)" class="st36 st32 st33">&ndash;0.12</text>
+								</g>
+							</g>
+							<g id="CP20" class="PC2 PN2">
+								<path class="st55" d="M277.3,685.7c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C280.2,692,277.3,689.2,277.3,685.7"/>
+								<g id="CP20L" class="PLabel">
+									<rect x="268.3" y="682.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="268.3" y="682.6" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 270.4551 686.9448)" class="st40 st32 st33">&ndash;0.65</text>
+								</g>
+							</g>
+							<g id="CP19" class="PC2 PN3">
+								<path class="st55" d="M306.9,690.3c0-4.3,3.5-7.9,7.8-7.9c4.3,0,7.8,3.5,7.8,7.9c0,4.3-3.5,7.8-7.8,7.8
+									C310.4,698.1,306.9,694.6,306.9,690.3"/>
+								<g id="CP19L" class="PLabel">
+									<rect x="298.9" y="686.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="298.9" y="686.2" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 301.0801 690.4697)" class="st40 st32 st33">&ndash;0.53</text>
+								</g>
+							</g>
+							<g id="CP18" class="PC1 PN1">
+								<polyline class="st45" points="459.7,713.3 462.9,710.1 459.7,706.9 456.5,710.1 459.7,713.3 			"/>
+								<g id="CP18L" class="PLabel">
+									<rect x="461.1" y="710.2" class="st29" width="10.2" height="6.5"/>
+									<rect x="461.1" y="710.2" class="st43" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 463.2446 714.485)" class="st44 st32 st33">0.03</text>
+								</g>
+							</g>
+							<g id="CP15" class="PC4 PN5">
+								<path class="st54" d="M423.7,694.5c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C428.2,704.6,423.7,700.1,423.7,694.5"/>
+								<g id="CP15L" class="PLabel">
+									<rect x="418.5" y="701.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="418.5" y="701.5" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 420.6802 705.7902)" class="st51 st32 st33">&ndash;0.07</text>
+								</g>
+							</g>
+							<g id="CP14" class="PC4 PN5">
+								<path class="st54" d="M429,678.5c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C433.5,688.5,429,684,429,678.5"/>
+								<g id="CP14L" class="PLabel">
+									<rect x="429.6" y="663" class="st29" width="11.9" height="6.5"/>
+									<rect x="429.6" y="663" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 431.7115 667.2993)" class="st51 st32 st33">&ndash;0.05</text>
+								</g>
+							</g>
+							<g id="CP13" class="PC4 PN1">
+								<polyline class="st54" points="488.1,715 491.3,711.8 488.1,708.5 484.9,711.8 488.1,715 			"/>
+								<g id="CP13L" class="PLabel">
+									<rect x="477.3" y="713.5" class="st29" width="10.2" height="6.5"/>
+									<rect x="477.3" y="713.5" class="st50" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 479.4408 717.8453)" class="st51 st32 st33">0.14</text>
+								</g>
+							</g>
+							<g id="CP12" class="PC0 PN4">
+								<path class="st28" d="M305.7,712.2c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9C309.8,721.3,305.7,717.2,305.7,712.2"/>
+								<g id="CP12L" class="PLabel">
+									<rect x="296.1" y="708.9" class="st29" width="11.9" height="6.5"/>
+									<rect x="296.1" y="708.9" class="st30" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 298.2348 713.2356)" class="st31 st32 st33">&ndash;0.53</text>
+								</g>
+							</g>
+							<g id="CP11" class="PC3 PN4">
+								<path class="st34" d="M357.5,684.1c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9C361.5,693.2,357.5,689.1,357.5,684.1"/>
+								<g id="CP11L" class="PLabel">
+									<rect x="353.4" y="671" class="st29" width="11.9" height="6.5"/>
+									<rect x="353.4" y="671" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 355.5552 675.3544)" class="st36 st32 st33">&ndash;0.33</text>
+								</g>
+							</g>
+							<g id="CP10" class="PC4 PN3">
+								<path class="st54" d="M420.8,681c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8s-3.5,7.8-7.8,7.8
+									C424.3,688.9,420.8,685.3,420.8,681"/>
+								<g id="CP10L" class="PLabel">
+									<rect x="414.5" y="668.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="414.5" y="668.8" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 416.6951 673.1404)" class="st51 st32 st33">&ndash;0.09</text>
+								</g>
+							</g>
+							<g id="CP9" class="PC2 PN4">
+								<path class="st55" d="M437.8,682.8c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9C441.8,691.8,437.8,687.7,437.8,682.8"/>
+								<g id="CP9L" class="PLabel">
+									<rect x="450.5" y="670" class="st29" width="11.9" height="6.5"/>
+									<rect x="450.5" y="670" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 452.6649 674.2747)" class="st40 st32 st33">&ndash;0.02</text>
+								</g>
+							</g>
+							<g id="CP8" class="PC2 PN3">
+								<path class="st55" d="M441.5,691.3c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8S441.5,695.7,441.5,691.3"/>
+								<g id="CP8L" class="PLabel">
+									<rect x="455.1" y="688.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="455.1" y="688.8" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 457.2903 693.0753)" class="st40 st32 st33">&ndash;0.01</text>
+								</g>
+							</g>
+							<g id="CP7" class="PC4 PN3">
+								<path class="st54" d="M433.7,692.3c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8s-3.5,7.8-7.8,7.8S433.7,696.6,433.7,692.3"/>
+								<g id="CP7L" class="PLabel">
+									<rect x="446.6" y="696.9" class="st29" width="11.9" height="6.5"/>
+									<rect x="446.6" y="696.9" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 448.7751 701.2347)" class="st51 st32 st33">&ndash;0.04</text>
+								</g>
+							</g>
+							<g id="CP6" class="PC3 PN1">
+								<polyline class="st34" points="382,692.6 385.3,689.4 382,686.2 378.8,689.4 382,692.6 			"/>
+								<g id="CP6L" class="PLabel">
+									<rect x="383.1" y="691.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="383.1" y="691.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 385.275 695.5796)" class="st36 st32 st33">&ndash;0.27</text>
+								</g>
+							</g>
+							<g id="CP5" class="PC3 PN5">
+								<path class="st34" d="M408.7,691c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C413.2,701,408.7,696.5,408.7,691"/>
+								<g id="CP5L" class="PLabel">
+									<rect x="398.5" y="691.1" class="st29" width="12.1" height="6.5"/>
+									<rect x="398.5" y="691.1" class="st35" width="12.1" height="6.5"/>
+									<text transform="matrix(1 0 0 1 400.6801 695.4547)" class="st36 st32 st33">&ndash;0.13</text>
+								</g>
+							</g>
+							<g id="CP4" class="PC3 PN1">
+								<polyline class="st34" points="429.4,692.9 432.6,689.7 429.4,686.5 426.2,689.7 429.4,692.9 			"/>
+								<g id="CP4L" class="PLabel">
+									<rect x="430.3" y="691.3" class="st29" width="12.3" height="6.5"/>
+									<rect x="430.3" y="691.3" class="st35" width="12.3" height="6.5"/>
+									<text transform="matrix(1 0 0 1 432.5009 695.5801)" class="st36 st32 st33">&ndash;0.09</text>
+								</g>
+							</g>
+							<g id="CP3" class="PC3 PN1">
+								<polyline class="st34" points="431.1,687.5 434.3,684.3 431.1,681.1 427.9,684.3 431.1,687.5 			"/>
+								<g id="CP3L" class="PLabel">
+									<rect x="431.8" y="676.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="431.8" y="676.2" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 433.9547 680.4846)" class="st36 st32 st33">&ndash;0.08</text>
+								</g>
+							</g>
+							<g id="CP2" class="PC4 PN1">
+								<polyline class="st54" points="448.2,689.4 451.4,686.2 448.2,683 445,686.2 448.2,689.4 			"/>
+								<g id="CP2L" class="PLabel">
+									<rect x="450.7" y="679.3" class="st29" width="11.4" height="6.5"/>
+									<rect x="450.7" y="679.3" class="st50" width="11.4" height="6.5"/>
+									<text transform="matrix(1 0 0 1 452.8303 683.5851)" class="st51 st32 st33">&ndash;0.01</text>
+								</g>
+							</g>
+							<g id="CP1" class="PC4 PN1">
+								<polyline class="st54" points="488.1,709.8 491.3,706.6 488.1,703.3 484.9,706.6 488.1,709.8 			"/>
+								<g id="CP1L" class="PLabel">
+									<rect x="477.6" y="698.2" class="st29" width="10.1" height="6.5"/>
+									<rect x="477.6" y="698.2" class="st50" width="10.1" height="6.5"/>
+									<text transform="matrix(1 0 0 1 479.7548 702.54)" class="st51 st32 st33">0.14</text>
+								</g>
+							</g>
+							<g id="CP17" class="PC4 PN1">
+								<polyline class="st54" points="488.2,712.6 491.4,709.4 488.2,706.2 485,709.4 488.2,712.6 			"/>
+								<g id="CP17L" class="PLabel">
+									<rect x="491.3" y="706.4" class="st29" width="10.1" height="6.5"/>
+									<rect x="491.3" y="706.4" class="st50" width="10.1" height="6.5"/>
+									<text transform="matrix(1 0 0 1 493.4851 710.7103)" class="st51 st32 st33">0.14</text>
+								</g>
+							</g>
+						</g>
+						<g id="FM_Plot_Sig" class="Sig">
+							<g id="FM53" class="PC4 PN2">
+								<path class="st48" d="M303.4,807.6c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C306.2,813.8,303.4,811,303.4,807.6"/>
+								<path class="st49" d="M303.4,807.6c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C306.2,813.8,303.4,811,303.4,807.6"/>
+								<g id="FM53L" class="PLabel">
+									<rect x="293.9" y="804.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="293.9" y="804.2" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 296.1002 808.5)" class="st51 st32 st33">&ndash;0.55</text>
+								</g>
+							</g>
+							<g id="FM52" class="PC1 PN2">
+								<path class="st41" d="M365.4,764.5c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C368.2,770.7,365.4,767.9,365.4,764.5"/>
+								<path class="st42" d="M365.4,764.5c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C368.2,770.7,365.4,767.9,365.4,764.5"/>
+								<g id="FM52L" class="PLabel">
+									<rect x="375.4" y="761.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="375.4" y="761.2" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 377.5098 765.5401)" class="st44 st32 st33">&ndash;0.31</text>
+								</g>
+							</g>
+							<g id="FM51" class="PC3 PN2">
+								<path class="st46" d="M272.2,810.7c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C275,816.9,272.2,814.1,272.2,810.7"/>
+								<path class="st47" d="M272.2,810.7c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C275,816.9,272.2,814.1,272.2,810.7"/>
+								<g id="FM51L" class="PLabel">
+									<rect x="262.3" y="807.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="262.3" y="807.6" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 264.5 811.8896)" class="st36 st32 st33">&ndash;0.67</text>
+								</g>
+							</g>
+							<g id="FM50" class="PC3 PN4">
+								<path class="st46" d="M339.3,806.6c0-4.9,4-8.9,8.9-8.9c4.9,0,9,4,9,8.9c0,4.9-4,9-9,9C343.3,815.6,339.3,811.5,339.3,806.6"/>
+								<path class="st47" d="M339.3,806.6c0-4.9,4-8.9,8.9-8.9c4.9,0,9,4,9,8.9c0,4.9-4,9-9,9C343.3,815.6,339.3,811.5,339.3,806.6"/>
+								<g id="FM50L" class="PLabel">
+									<rect x="331.4" y="799.9" class="st29" width="10.2" height="6.5"/>
+									<rect x="331.4" y="799.9" class="st35" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 333.5201 804.2553)" class="st36 st32 st33">&ndash;0.4</text>
+								</g>
+							</g>
+							<g id="FM49" class="PC3 PN4">
+								<path class="st46" d="M360.2,784.1c0-4.9,4-9,9-9s9,4,9,9c0,4.9-4,9-9,9S360.2,789,360.2,784.1"/>
+								<path class="st47" d="M360.2,784.1c0-4.9,4-9,9-9s9,4,9,9c0,4.9-4,9-9,9S360.2,789,360.2,784.1"/>
+								<g id="FM49L" class="PLabel">
+									<rect x="358.7" y="769.1" class="st29" width="11.9" height="6.5"/>
+									<rect x="358.7" y="769.1" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 360.9076 773.4004)" class="st36 st32 st33">&ndash;0.32</text>
+								</g>
+							</g>
+							<g id="FM48" class="PC1 PN2">
+								<path class="st41" d="M311.1,786.4c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C313.9,792.6,311.1,789.8,311.1,786.4"/>
+								<path class="st42" d="M311.1,786.4c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C313.9,792.6,311.1,789.8,311.1,786.4"/>
+								<g id="FM47L" class="PLabel">
+									<rect x="300.9" y="782.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="300.9" y="782.5" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 303.0649 786.8348)" class="st44 st32 st33">&ndash;0.52</text>
+								</g>
+							</g>
+							<g id="FM47" class="PC3 PN2">
+								<path class="st46" d="M319,815.7c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C321.9,821.9,319,819.1,319,815.7"/>
+								<path class="st47" d="M319,815.7c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C321.9,821.9,319,819.1,319,815.7"/>
+								<g id="FM47L" class="PLabel">
+									<rect x="311.5" y="817.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="311.5" y="817.7" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 313.6848 822.0146)" class="st36 st32 st33">&ndash;0.49</text>
+								</g>
+							</g>
+							<g id="FM46" class="PC3 PN2">
+								<path class="st46" d="M347.5,814c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C350.3,820.2,347.5,817.4,347.5,814"/>
+								<path class="st47" d="M347.5,814c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C350.3,820.2,347.5,817.4,347.5,814"/>
+								<g id="FM46L" class="PLabel">
+									<rect x="348.4" y="818.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="348.4" y="818.8" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 350.5602 823.0948)" class="st36 st32 st33">&ndash;0.38</text>
+								</g>
+							</g>
+							<g id="FM45" class="PC1 PN2">
+								<path class="st41" d="M349.7,784.2c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C352.5,790.5,349.7,787.7,349.7,784.2"/>
+								<path class="st42" d="M349.7,784.2c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C352.5,790.5,349.7,787.7,349.7,784.2"/>
+								<g id="FM45L" class="PLabel">
+									<rect x="345.8" y="773" class="st29" width="11.9" height="6.5"/>
+									<rect x="345.8" y="773" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 347.945 777.3199)" class="st44 st32 st33">&ndash;0.37</text>
+								</g>
+							</g>
+							<g id="FM44" class="PC2 PN2">
+								<path class="st37" d="M306,766.8c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C308.8,773,306,770.2,306,766.8"/>
+								<path class="st38" d="M306,766.8c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C308.8,773,306,770.2,306,766.8"/>
+								<g id="FM44L" class="PLabel">
+									<rect x="296.6" y="759.6" class="st29" width="11.9" height="6.5"/>
+									<rect x="296.6" y="759.6" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 298.7598 763.9502)" class="st40 st32 st33">&ndash;0.54</text>
+								</g>
+							</g>
+							<g id="FM43" class="PC3 PN3">
+								<path class="st46" d="M317.3,784.2c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C320.8,792,317.3,788.5,317.3,784.2"/>
+								<path class="st47" d="M317.3,784.2c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C320.8,792,317.3,788.5,317.3,784.2"/>
+								<g id="FM43L" class="PLabel">
+									<rect x="310.4" y="772.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="310.4" y="772.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 312.5251 776.6301)" class="st36 st32 st33">&ndash;0.49</text>
+								</g>
+							</g>
+							<g id="FM42" class="PC1 PN2">
+								<path class="st41" d="M303.3,744.6c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C306.1,750.8,303.3,748,303.3,744.6"/>
+								<path class="st42" d="M303.3,744.6c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C306.1,750.8,303.3,748,303.3,744.6"/>
+								<g id="FM42L" class="PLabel">
+									<rect x="294.3" y="741.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="294.3" y="741.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 296.4147 745.6749)" class="st44 st32 st33">&ndash;0.55</text>
+								</g>
+							</g>
+							<g id="FM41" class="PC1 PN1">
+								
+									<rect x="354" y="807.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -467.9104 488.9263)" class="st41" width="4.4" height="4.4"/>
+								
+									<rect x="354" y="807.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -467.9104 488.9263)" class="st42" width="4.4" height="4.4"/>
+								<g id="FM41L" class="PLabel">
+									<rect x="343.5" y="801.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="343.5" y="801.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 345.6801 805.6851)" class="st44 st32 st33">&ndash;0.37</text>
+								</g>
+							</g>
+							<g id="FM40" class="PC1 PN4">
+								<path class="st41" d="M372.9,815.8c0-4.9,4-9,9-9c4.9,0,8.9,4,8.9,9c0,4.9-4,9-8.9,9C377,824.8,372.9,820.8,372.9,815.8"/>
+								<path class="st42" d="M372.9,815.8c0-4.9,4-9,9-9c4.9,0,8.9,4,8.9,9c0,4.9-4,9-8.9,9C377,824.8,372.9,820.8,372.9,815.8"/>
+								<g id="FM40L" class="PLabel">
+									<rect x="386.1" y="818.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="386.1" y="818.2" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 388.2446 822.5154)" class="st44 st32 st33">&ndash;0.27</text>
+								</g>
+							</g>
+							<g id="FM39" class="PC1 PN4">
+								<path class="st41" d="M375.5,804.3c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,8.9-9,8.9C379.5,813.2,375.5,809.2,375.5,804.3"/>
+								<path class="st42" d="M375.5,804.3c0-4.9,4-9,9-9c4.9,0,9,4,9,9c0,4.9-4,8.9-9,8.9C379.5,813.2,375.5,809.2,375.5,804.3"/>
+								<g id="FM39L" class="PLabel">
+									<rect x="390.4" y="793.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="390.4" y="793.3" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 392.5845 797.6324)" class="st44 st32 st33">&ndash;0.26</text>
+								</g>
+							</g>
+							<g id="FM38" class="PC1 PN5">
+								<path class="st41" d="M377.4,742.7c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C381.9,752.7,377.4,748.2,377.4,742.7"/>
+								<path class="st42" d="M377.4,742.7c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C381.9,752.7,377.4,748.2,377.4,742.7"/>
+								<g id="FM38L" class="PLabel">
+									<rect x="372.9" y="732.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="372.9" y="732.3" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 375.0098 736.6504)" class="st44 st32 st33">&ndash;0.25</text>
+								</g>
+							</g>
+							<g id="FM37" class="PC1 PN5">
+								<path class="st41" d="M400.6,746.9c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,9.9-10,9.9
+									C405.1,756.8,400.6,752.4,400.6,746.9"/>
+								<path class="st42" d="M400.6,746.9c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,9.9-10,9.9
+									C405.1,756.8,400.6,752.4,400.6,746.9"/>
+								<g id="FM37L" class="PLabel">
+									<rect x="398.6" y="732.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="398.6" y="732.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 400.7947 736.7448)" class="st44 st32 st33">&ndash;0.16</text>
+								</g>
+							</g>
+							<g id="FM36" class="PC1 PN5">
+								<path class="st41" d="M413.5,742.7c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C418,752.6,413.5,748.1,413.5,742.7
+									"/>
+								<path class="st42" d="M413.5,742.7c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C418,752.6,413.5,748.1,413.5,742.7
+									"/>
+								<g id="FM36L" class="PLabel">
+									<rect x="428.2" y="731.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="428.2" y="731.8" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 430.3952 736.1049)" class="st44 st32 st33">&ndash;0.11</text>
+								</g>
+							</g>
+							<g id="FM35" class="PC1 PN5">
+								<path class="st41" d="M413.5,811.5c0-5.5,4.5-10,9.9-10c5.5,0,10,4.5,10,10s-4.5,10-10,10C418,821.5,413.5,817,413.5,811.5"/>
+								<path class="st42" d="M413.5,811.5c0-5.5,4.5-10,9.9-10c5.5,0,10,4.5,10,10s-4.5,10-10,10C418,821.5,413.5,817,413.5,811.5"/>
+								<g id="FN35L" class="PLabel">
+									<rect x="425" y="818.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="425" y="818.8" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 427.1151 823.095)" class="st44 st32 st33">&ndash;0.11</text>
+								</g>
+							</g>
+							<g id="FM34" class="PC1 PN5">
+								<path class="st41" d="M418.5,751.6c0-5.5,4.5-10,10-10c5.5,0,9.9,4.5,9.9,10c0,5.5-4.5,10-9.9,10
+									C422.9,761.5,418.5,757.1,418.5,751.6"/>
+								<path class="st42" d="M418.5,751.6c0-5.5,4.5-10,10-10c5.5,0,9.9,4.5,9.9,10c0,5.5-4.5,10-9.9,10
+									C422.9,761.5,418.5,757.1,418.5,751.6"/>
+								<g id="FM34L" class="PLabel">
+									<rect x="433.7" y="756.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="433.7" y="756.8" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 435.89 761.0999)" class="st44 st32 st33">&ndash;0.09</text>
+								</g>
+							</g>
+							<g id="FM33" class="PC3 PN3">
+								<path class="st46" d="M379.2,808c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C382.7,815.7,379.2,812.2,379.2,808"/>
+								<path class="st47" d="M379.2,808c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C382.7,815.7,379.2,812.2,379.2,808"/>
+								<g id="FM33L" class="PLabel">
+									<rect x="371.7" y="798.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="371.7" y="798.5" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 373.8752 802.855)" class="st36 st32 st33">&ndash;0.25</text>
+								</g>
+							</g>
+							<g id="FM32" class="PC1 PN1">
+								
+									<rect x="382.5" y="806.6" transform="matrix(0.7082 -0.706 0.706 0.7082 -458.7451 507.5688)" class="st41" width="4.4" height="4.4"/>
+								
+									<rect x="382.5" y="806.6" transform="matrix(0.7082 -0.706 0.706 0.7082 -458.7451 507.5688)" class="st42" width="4.4" height="4.4"/>
+								<g id="FM32L" class="PLabel">
+									<rect x="386.7" y="806" class="st29" width="11.9" height="6.5"/>
+									<rect x="386.7" y="806" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 388.9051 810.3553)" class="st44 st32 st33">&ndash;0.26</text>
+								</g>
+							</g>
+							<g id="FM31" class="PC3 PN5">
+								<path class="st46" d="M353.9,745.7c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C358.4,755.7,353.9,751.2,353.9,745.7"/>
+								<path class="st47" d="M353.9,745.7c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C358.4,755.7,353.9,751.2,353.9,745.7"/>
+								<g id="FM31L" class="PLabel">
+									<rect x="367.5" y="750" class="st29" width="11.9" height="6.5"/>
+									<rect x="367.5" y="750" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 369.6797 754.3301)" class="st36 st32 st33">&ndash;0.34</text>
+								</g>
+							</g>
+							<g id="FM30" class="PC3 PN3">
+								<path class="st46" d="M312.1,761.5c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C315.6,769.2,312.1,765.7,312.1,761.5"/>
+								<path class="st47" d="M312.1,761.5c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C315.6,769.2,312.1,765.7,312.1,761.5"/>
+								<g id="FM30L" class="PLabel">
+									<rect x="324.8" y="757.9" class="st29" width="11.9" height="6.5"/>
+									<rect x="324.8" y="757.9" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 326.9851 762.1746)" class="st36 st32 st33">&ndash;0.51</text>
+								</g>
+							</g>
+							<g id="FM29" class="PC3 PN1">
+								
+									<rect x="341.1" y="811.4" transform="matrix(0.7082 -0.706 0.706 0.7082 -474.1855 479.7188)" class="st46" width="4.4" height="4.4"/>
+								
+									<rect x="341.1" y="811.4" transform="matrix(0.7082 -0.706 0.706 0.7082 -474.1855 479.7188)" class="st47" width="4.4" height="4.4"/>
+								<g id="FM29L" class="PLabel">
+									<rect x="332.9" y="817" class="st29" width="11.9" height="6.5"/>
+									<rect x="332.9" y="817" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 335.0898 821.2797)" class="st36 st32 st33">&ndash;0.42</text>
+								</g>
+							</g>
+							<g id="FM28" class="PC4 PN1">
+								
+									<rect x="304.9" y="812.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -485.8722 455.6818)" class="st48" width="4.4" height="4.4"/>
+								
+									<rect x="304.9" y="812.1" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -485.8722 455.6818)" class="st49" width="4.4" height="4.4"/>
+								<g id="FM28L" class="PLabel">
+									<rect x="296.6" y="817" class="st29" width="11.9" height="6.5"/>
+									<rect x="296.6" y="817" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 298.7601 821.2905)" class="st51 st32 st33">&ndash;0.56</text>
+								</g>
+							</g>
+							<g id="FM27" class="PC1 PN1">
+								
+									<rect x="335.8" y="809.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -475.0948 476.8127)" class="st41" width="4.4" height="4.4"/>
+								
+									<rect x="335.8" y="809.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -475.0948 476.8127)" class="st42" width="4.4" height="4.4"/>
+								<g id="FM27L" class="PLabel">
+									<rect x="323.3" y="807.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="323.3" y="807.7" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 325.485 812.0298)" class="st44 st32 st33">&ndash;0.44</text>
+								</g>
+							</g>
+							<g id="FM26" class="PC3 PN5">
+								<path class="st46" d="M330.8,743.5c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,9.9-10,9.9
+									C335.3,753.5,330.8,749,330.8,743.5"/>
+								<path class="st47" d="M330.8,743.5c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,9.9-10,9.9
+									C335.3,753.5,330.8,749,330.8,743.5"/>
+								<g id="FM26L" class="PLabel">
+									<rect x="324.6" y="740.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="324.6" y="740.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 326.73 744.5996)" class="st36 st32 st33">&ndash;0.43</text>
+								</g>
+							</g>
+							<g id="FM25" class="PC1 PN2">
+								<path class="st41" d="M344.7,746.7c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C347.5,752.9,344.7,750.1,344.7,746.7"/>
+								<path class="st42" d="M344.7,746.7c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C347.5,752.9,344.7,750.1,344.7,746.7"/>
+								<g id="FM25L" class="PLabel">
+									<rect x="338.3" y="751" class="st29" width="11.9" height="6.5"/>
+									<rect x="338.3" y="751" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 340.4702 755.3496)" class="st44 st32 st33">&ndash;0.39</text>
+								</g>
+							</g>
+							<g id="FM24" class="PC1 PN2">
+								<path class="st41" d="M344.8,740.3c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C347.6,746.5,344.8,743.7,344.8,740.3"/>
+								<path class="st42" d="M344.8,740.3c0-3.4,2.8-6.2,6.2-6.2c3.4,0,6.2,2.8,6.2,6.2c0,3.4-2.8,6.2-6.2,6.2
+									C347.6,746.5,344.8,743.7,344.8,740.3"/>
+								<g id="FM24L" class="PLabel">
+									<rect x="353.4" y="731.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="353.4" y="731.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 355.5601 735.6699)" class="st44 st32 st33">&ndash;0.39</text>
+								</g>
+							</g>
+							<g id="FM23" class="PC3 PN1">
+								
+									<rect x="361.9" y="806.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -465.2863 494.3255)" class="st46" width="4.4" height="4.4"/>
+								
+									<rect x="361.9" y="806.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -465.2863 494.3255)" class="st47" width="4.4" height="4.4"/>
+								<g id="FM23L" class="PLabel">
+									<rect x="358.2" y="799.9" class="st29" width="11.9" height="6.5"/>
+									<rect x="358.2" y="799.9" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 360.3852 804.2548)" class="st36 st32 st33">&ndash;0.34</text>
+								</g>
+							</g>
+							<g id="FM22" class="PC3 PN1">
+								
+									<rect x="364.4" y="810.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -467.3392 497.3053)" class="st46" width="4.4" height="4.4"/>
+								
+									<rect x="364.4" y="810.6" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -467.3392 497.3053)" class="st47" width="4.4" height="4.4"/>
+								<g id="FM22L" class="PLabel">
+									<rect x="362.6" y="815.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="362.6" y="815.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 364.7145 819.6349)" class="st36 st32 st33">&ndash;0.33</text>
+								</g>
+							</g>
+							<g id="FM21" class="PC1 PN1">
+								
+									<rect x="352" y="788.5" transform="matrix(0.706 -0.7082 0.7082 0.706 -455.8425 483.3565)" class="st41" width="4.4" height="4.4"/>
+								
+									<rect x="352" y="788.5" transform="matrix(0.706 -0.7082 0.7082 0.706 -455.8425 483.3565)" class="st42" width="4.4" height="4.4"/>
+								<g id="FM21L" class="PLabel">
+									<rect x="353.2" y="792.8" class="st29" width="11.5" height="6.5"/>
+									<rect x="353.2" y="792.8" class="st43" width="11.5" height="6.5"/>
+									<text transform="matrix(1 0 0 1 355.3176 797.1346)" class="st44 st32 st33">&ndash;0.38</text>
+								</g>
+							</g>
+							<g id="FM20" class="PC1 PN1">
+								
+									<rect x="366.3" y="783.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -447.8094 490.7724)" class="st41" width="4.4" height="4.4"/>
+								
+									<rect x="366.3" y="783.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -447.8094 490.7724)" class="st42" width="4.4" height="4.4"/>
+								<g id="FM20L" class="PLabel">
+									<rect x="367" y="776.7" class="st29" width="11.9" height="6.5"/>
+									<rect x="367" y="776.7" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 369.1249 781.0347)" class="st44 st32 st33">&ndash;0.32</text>
+								</g>
+							</g>
+						</g>
+						<g id="FM_Plot_NonSi" class="NonSi">
+							<g id="FM19" class="PC3 PN2">
+								<path class="st34" d="M399.1,815.8c0-3.5,2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3S399.1,819.3,399.1,815.8"/>
+								<g id="FM19L" class="PLabel">
+									<rect x="408.6" y="818.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="408.6" y="818.2" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 410.7406 822.5397)" class="st36 st32 st33">&ndash;0.18</text>
+								</g>
+							</g>
+							<g id="FM18" class="PC3 PN3">
+								<path class="st34" d="M330.2,783.2c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8
+									C333.8,791,330.2,787.5,330.2,783.2"/>
+								<g id="FM18L" class="PLabel">
+									<rect x="329.1" y="769.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="329.1" y="769.8" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 331.295 774.0797)" class="st36 st32 st33">&ndash;0.44</text>
+								</g>
+							</g>
+							<g id="FM17" class="PC3 PN2">
+								<path class="st34" d="M339.5,788.6c0-3.5,2.8-6.3,6.3-6.3s6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3S339.5,792,339.5,788.6"/>
+								<g id="FM17L" class="PLabel">
+									<rect x="330.5" y="792.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="330.5" y="792.2" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 332.6849 796.5526)" class="st36 st32 st33">&ndash;0.41</text>
+								</g>
+							</g>
+							<g id="FM16" class="PC4 PN2">
+								<path class="st54" d="M342.2,765.2c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C345,771.5,342.2,768.7,342.2,765.2"/>
+								<g id="FM16L" class="PLabel">
+									<rect x="351.7" y="762" class="st29" width="10.2" height="6.5"/>
+									<rect x="351.7" y="762" class="st50" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 353.9002 766.2799)" class="st51 st32 st33">&ndash;0.4</text>
+								</g>
+							</g>
+							<g id="FM15" class="PC3 PN2">
+								<path class="st34" d="M367.9,790.4c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C370.8,796.7,367.9,793.9,367.9,790.4"/>
+								<g id="FM15L" class="PLabel">
+									<rect x="378" y="788" class="st29" width="10.2" height="6.5"/>
+									<rect x="378" y="788" class="st35" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 380.1701 792.3202)" class="st36 st32 st33">&ndash;0.3</text>
+								</g>
+							</g>
+							<g id="FM14" class="PC2 PN3">
+								<path class="st55" d="M395,783.4c0-4.3,3.5-7.8,7.8-7.8s7.8,3.5,7.8,7.8c0,4.3-3.5,7.8-7.8,7.8S395,787.7,395,783.4"/>
+								<g id="FM14L" class="PLabel">
+									<rect x="402" y="770.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="402" y="770.4" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 404.1699 774.6749)" class="st40 st32 st33">&ndash;0.19</text>
+								</g>
+							</g>
+							<g id="FM13" class="PC2 PN3">
+								<path class="st55" d="M405.3,794.9c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8s-3.5,7.8-7.8,7.8
+									C408.8,802.8,405.3,799.2,405.3,794.9"/>
+								<g id="FM13L" class="PLabel">
+									<rect x="401.3" y="801" class="st29" width="11.9" height="6.5"/>
+									<rect x="401.3" y="801" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 403.4297 805.3401)" class="st40 st32 st33">&ndash;0.15</text>
+								</g>
+							</g>
+							<g id="FM12" class="PC4 PN2">
+								<path class="st54" d="M412,792.4c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C414.8,798.7,412,795.9,412,792.4"/>
+								<g id="FM12L" class="PLabel">
+									<rect x="422.8" y="792.8" class="st29" width="11.9" height="6.5"/>
+									<rect x="422.8" y="792.8" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 424.9253 797.1304)" class="st51 st32 st33">&ndash;0.13</text>
+								</g>
+							</g>
+							<g id="FM11" class="PC4 PN2">
+								<path class="st54" d="M411.9,786.7c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C414.8,793,411.9,790.1,411.9,786.7"/>
+								<g id="FM11L" class="PLabel">
+									<rect x="423.6" y="781.5" class="st29" width="11.9" height="6.5"/>
+									<rect x="423.6" y="781.5" class="st50" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 425.7561 785.8203)" class="st51 st32 st33">&ndash;0.13</text>
+								</g>
+							</g>
+							<g id="FM10" class="PC1 PN2">
+								<path class="st45" d="M406.8,784.3c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C409.7,790.6,406.8,787.8,406.8,784.3"/>
+								<g id="FM10L" class="PLabel">
+									<rect x="415.8" y="773.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="415.8" y="773.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 417.9498 777.7054)" class="st44 st32 st33">&ndash;0.15</text>
+								</g>
+							</g>
+							<g id="FM9" class="PC1 PN4">
+								<path class="st45" d="M269.4,787.6c0-5,4.1-9,9-9c5,0,9,4.1,9,9c0,5-4.1,9-9,9C273.5,796.6,269.4,792.6,269.4,787.6"/>
+								<g id="FM9L" class="PLabel">
+									<rect x="260.8" y="784.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="260.8" y="784.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 262.955 788.6799)" class="st44 st32 st33">&ndash;0.67</text>
+								</g>
+							</g>
+							<g id="FM8" class="PC1 PN5">
+								<path class="st45" d="M434.2,810.9c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10
+									C438.7,820.9,434.2,816.4,434.2,810.9"/>
+								<g id="FM8L" class="PLabel">
+									<rect x="448.3" y="818" class="st29" width="11.9" height="6.5"/>
+									<rect x="448.3" y="818" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 450.4448 822.355)" class="st44 st32 st33">&ndash;0.03</text>
+								</g>
+							</g>
+							<g id="FM7" class="PC1 PN5">
+								<path class="st45" d="M444.4,804c0-5.5,4.5-10,10-10c5.5,0,10,4.5,10,10c0,5.5-4.5,10-10,10C448.9,814.1,444.4,809.5,444.4,804"
+									/>
+								<g id="FM7L" class="PLabel">
+									<rect x="462.3" y="799.7" class="st29" width="10.2" height="6.5"/>
+									<rect x="462.3" y="799.7" class="st43" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 464.4404 804.0398)" class="st44 st32 st33">0.01</text>
+								</g>
+							</g>
+							<g id="FM6" class="PC2 PN2">
+								<path class="st55" d="M210.1,745.1c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C213,751.4,210.1,748.6,210.1,745.1"/>
+								<g id="FM6L" class="PLabel">
+									<rect x="200.7" y="742.2" class="st29" width="11.9" height="6.5"/>
+									<rect x="200.7" y="742.2" class="st39" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 202.8747 746.5197)" class="st40 st32 st33">&ndash;0.91</text>
+								</g>
+							</g>
+							<g id="FM5" class="PC1 PN1">
+								<polyline class="st45" points="392.7,790.2 395.9,787 392.7,783.7 389.5,787 392.7,790.2 			"/>
+								<g id="FM5L" class="PLabel">
+									<rect x="382" y="777.7" class="st29" width="12.6" height="6.5"/>
+									<rect x="382" y="777.7" class="st43" width="12.6" height="6.5"/>
+									<text transform="matrix(1 0 0 1 384.1551 782.04)" class="st44 st32 st33">&ndash;0.23</text>
+								</g>
+							</g>
+							<g id="FM4" class="PC3 PN3">
+								<path class="st34" d="M418.2,747.3c0-4.3,3.5-7.8,7.8-7.8c4.3,0,7.8,3.5,7.8,7.8s-3.5,7.8-7.8,7.8
+									C421.7,755.1,418.2,751.6,418.2,747.3"/>
+								<g id="FM4L" class="PLabel">
+									<rect x="432.8" y="744" class="st29" width="10.2" height="6.5"/>
+									<rect x="432.8" y="744" class="st35" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 434.9468 748.3699)" class="st36 st32 st33">&ndash;0.1</text>
+								</g>
+							</g>
+							<g id="FM3" class="PC0 PN2">
+								<path class="st28" d="M238.6,765.8c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C241.4,772.1,238.6,769.3,238.6,765.8"/>
+								<g id="FM3L" class="PLabel">
+									<rect x="249" y="763.2" class="st29" width="10.2" height="6.5"/>
+									<rect x="249" y="763.2" class="st30" width="10.2" height="6.5"/>
+									<text transform="matrix(1 0 0 1 251.11 767.5703)" class="st31 st32 st33">&ndash;0.8</text>
+								</g>
+							</g>
+							<g id="FM2" class="PC1 PN2">
+								<path class="st45" d="M220.4,764.6c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3c0,3.5-2.8,6.3-6.3,6.3
+									C223.3,770.9,220.4,768.1,220.4,764.6"/>
+								<g id="FM2L" class="PLabel">
+									<rect x="210.5" y="761.4" class="st29" width="11.9" height="6.5"/>
+									<rect x="210.5" y="761.4" class="st43" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 212.625 765.6803)" class="st44 st32 st33">&ndash;0.87</text>
+								</g>
+							</g>
+							<g id="FM1" class="PC3 PN2">
+								<path class="st34" d="M396.5,763.2c0-3.5,2.8-6.3,6.3-6.3c3.5,0,6.3,2.8,6.3,6.3s-2.8,6.3-6.3,6.3
+									C399.3,769.5,396.5,766.6,396.5,763.2"/>
+								<g id="FM1L" class="PLabel">
+									<rect x="407.2" y="760.3" class="st29" width="11.9" height="6.5"/>
+									<rect x="407.2" y="760.3" class="st35" width="11.9" height="6.5"/>
+									<text transform="matrix(1 0 0 1 409.3552 764.6453)" class="st36 st32 st33">&ndash;0.19</text>
+								</g>
+							</g>
+						</g>
+					</g>
+				</svg>
+			</div>
+			<!-- ID LIST SCRIPTS-->
+			<script>
+				var PLabelList = document.querySelectorAll(".PLabel");
+			 	var PLabelIds = [].map.call(PLabelList, function(elem){
+			 		return elem.id;
+			 	});
+			 	var SigList = document.querySelectorAll(".Sig");
+			 	var SigIds = [].map.call(SigList, function(elem){
+			 		return elem.id;
+			 	});
+			 	var NonSigList = document.querySelectorAll(".NonSi");
+			 	var NonSigIds = [].map.call(NonSigList, function(elem){
+			 		return elem.id;
+			 	});
+			 	var N_NRList = document.querySelectorAll(".PN1");
+			 	var N_NRIds = [].map.call(N_NRList, function(elem){
+			 		return elem.id;
+			 	});
+			 	var N_1List = document.querySelectorAll(".PN2");
+			 	var N_1Ids = [].map.call(N_1List, function(elem){
+			 		return elem.id;
+			 	});
+			 	var N_2List = document.querySelectorAll(".PN3");
+			 	var N_2Ids = [].map.call(N_2List, function(elem){
+			 		return elem.id;
+			 	});
+			 	var N_3List = document.querySelectorAll(".PN4");
+			 	var N_3Ids = [].map.call(N_3List, function(elem){
+			 		return elem.id;
+			 	});
+			 	var N_4List = document.querySelectorAll(".PN5");
+			 	var N_4Ids = [].map.call(N_4List, function(elem){
+			 		return elem.id;
+			 	});
+			 	var C_ActList = document.querySelectorAll(".PC4");
+			 	var C_ActIds = [].map.call(C_ActList, function(elem){
+			 		return elem.id;
+			 	});
+			 	var C_MixList = document.querySelectorAll(".PC3");
+			 	var C_MixIds = [].map.call(C_MixList, function(elem){
+			 		return elem.id;
+			 	});
+			 	var C_UCList = document.querySelectorAll(".PC2");
+			 	var C_UCIds = [].map.call(C_UCList, function(elem){
+			 		return elem.id;
+			 	});
+			 	var C_InAList = document.querySelectorAll(".PC1");
+			 	var C_InAIds = [].map.call(C_InAList, function(elem){
+			 		return elem.id;
+			 	});
+			 	var C_NRList = document.querySelectorAll(".PC0");
+			 	var C_NRIds = [].map.call(C_NRList, function(elem){
+			 		return elem.id;
+			 	});
+
+			</script>
+			<!-- LEGEND BOX -->
+			<div id="vizlegendcont">
+			<span class="header" style="font-size:14px;">DISPLAY OPTIONS</span>
+			<!-- OPTIONS -->
+			<!-- ZOOMING -->
+				<div class="legend" style="padding-left:2px;"><span class="header">Zoom & Pan</span><br>
+					<span style="font-size: 9px;"><i>Scroll to zoom / click + drag to pan</i></span>
+					<div class="zoomable">
+						<button id="enableb" style="display:none; width:85px;" onclick="zoomMainViz.enableZoom(); zoomMainViz.enablePan(); zoomMainViz.enableDblClickZoom(); toggleZoom()">ENABLE</button>
+						<button id="disableb" style="display:block; width:85px;" onclick="zoomMainViz.disableZoom(); zoomMainViz.disablePan(); zoomMainViz.disableDblClickZoom(); toggleZoom()">DISABLE</button>
+					</div>
+					<button onclick="zoomMainViz.zoomIn()">+</button>
+					<button style="width:45px;" onclick="zoomMainViz.resize(); zoomMainViz.reset();">Reset</button>
+					<button onclick="zoomMainViz.zoomOut()">-</button><br>
+				</div>
+			<!-- LEGEND -->
+			<span class="header" style="font-size:14px; padding-top:10px"><br>LEGEND</span>
+			<!-- NODE ES TOGGLE -->
+				<div class="legend" style="margin-top:9px;"><span class="header">Labels</span><br>
+					<label class="checklist">Effect Size<br />
+						<input id="checkedESlabInt" type="checkbox" checked onclick="toggleESlabInt()"/>
+						<span class="check"></span>
+					</label>
+				</div>
+			<!-- COMPARATOR LEGEND -->
+				<div class="legend"><span class="header">Comparator</span><br>
+					<label class="checklist">Select All<br />
+						<input id="AllComp" type="checkbox" checked onclick="togAllComp()"/>
+						<span class="check boxSelA"></span>
+					</label>
+					<label class="checklist">Active<br />
+						<input id="checkedC_Act" type="checkbox" checked name="pain" value="CP" onclick="togC_Act()"/>
+						<span class="check boxC_Act"></span>
+					</label>
+					<label class="checklist">Mixed<br />
+						<input id="checkedC_Mix" type="checkbox" checked name="pain" value="FM" onclick="togC_Mix()"/>
+						<span class="check boxC_Mix" ></span>
+					</label>
+					<label class="checklist">Usual Care<br />
+						<input id="checkedC_UC" type="checkbox" checked name="pain" value="AR" onclick="togC_UC()"/>
+						<span class="check boxC_UC"></span>
+					</label>
+					<label class="checklist">Inactive<br />
+						<input id="checkedC_InA" type="checkbox" checked name="pain" value="AX" onclick="togC_InA()"/>
+						<span class="check boxC_InA"></span>
+					</label>
+					<label class="checklist">Not reported<br />
+						<input id="checkedC_NR" type="checkbox" checked name="pain" value="NP" onclick="togC_NR()"/>
+						<span class="check boxC_NR"></span>
+					</label>
+				</div>
+			<!-- SAMPLE SIZE LEGEND -->
+				<div class="legend"><span class="header">Sample Size (N)</span><br>
+					<label class="checklist">Select All<br />
+						<input id="AllN" type="checkbox" checked onclick="togAllN()"/>
+						<span class="check boxSelA"></span>
+					</label>
+					<label class="checklist">Not reported (29)<br />
+						<input id="checkedN_NR" type="checkbox" checked onclick="togN_NR()"/>
+						<span class="checkN boxN_NR"></span>
+					</label>
+					<label class="checklist">&lt;250 (53)<br />
+						<input id="checkedN_1" type="checkbox" checked onclick="togN_1()"/>
+						<span class="checkN boxN_1"></span>
+					</label>
+					<label class="checklist">250&ndash;499 (22)<br />
+						<input id="checkedN_2" type="checkbox" checked onclick="togN_2()"/>
+						<span class="checkN boxN_2"></span>
+					</label>
+					<label class="checklist">500&ndash;999 (24)<br />
+						<input id="checkedN_3" type="checkbox" checked onclick="togN_3()"/>
+						<span class="checkN boxN_3"></span>
+					</label>
+					<label class="checklist">&gt;1000 (24)<br />
+						<input id="checkedN_4" type="checkbox" checked onclick="togN_4()"/>
+						<span class="checkN boxN_4"></span>
+					</label>
+				</div>
+			<!-- SIG LEGEND -->
+				<div class="legend"><span class="header">Significance</span><br>
+					<label class="checklist">Significant p<0.05<br />
+						<input id="checkedSig" type="checkbox" checked onclick="toggleSig(SigIds)"/>
+						<span class="check"></span>
+					</label>
+					<label class="checklist">Non-Significant p>0.05<br />
+						<input id="checkedNonSig" type="checkbox" checked onclick="toggleSig(NonSigIds)"/>
+						<span class="check"></span>
+					</label>
+				</div>
+			<div class="legend" id="vizcaption"><br>
+					<span style="color:black;"><b><i>ABBREVIATIONS:</i></b></span><br>
+					ACT = <i>acceptance commitment therapy</i>, Beh = <i>behavioural therapy</i>, CBT = <i>cognitive behavioural therapy</i>, CAM = <i>complementary alternative medicine</i>, Brain Stim = <i>brain stimulation</i>, Edu = <i>education-based</i>, MDC = <i>multidisciplinary care</i>, PHARM = <i>pharmacological therapy</i>, PSYCH = <i>psychological therapy</i>, PSY = <i>psychological subgroup</i>, Self-Reg = <i>self-regulatory treatment</i>, Water = <i>water-based therapy</i>, Web = <i>web-based therapy</i>, .</div>
+			</div>
+		</div>
+	</section>
+	<script>
+		/** ZOOMING **/
+			var zoomMainViz = svgPanZoom('#IntSVG', {
+				zoomEnabled: true,
+				controlIconsEnabled: false,
+				zoomScaleSensitivity: 0.1,
+				minZoom: .5,
+				maxZoom: 10,
+				contain: true,
+				center: true,
+				refreshRate: 'auto'
+	        });
+	</script>
+</body>
+</html>
