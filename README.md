@@ -1,10 +1,6 @@
-## CPdepSR
-
-Supplemental file repository for the systematic review of systematic reviews on depression in chronic pain
+#### Supplemental file repository for systematic review of systematic reviews on depression in chronic pain
 
 **Files:**
-> [Evidence Map](./EvidenceMap.html)
-
-> Plot - [Effect Size by Pain Type](./PainES.html)
-
-> Plot - [Effect Size by Intervention Type](./InterventionES.html)
+> [Evidence Map](./EvidenceMap.html)\
+> [Effect Size by Pain Type Plot](./PainES.html)\
+> [Effect Size by Intervention Type Plot](./InterventionES.html)
