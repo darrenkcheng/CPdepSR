@@ -3,7 +3,7 @@
 <head>
 <!-- META DATA ---------------------------->
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <meta name="description" content="Supplemental information">
+	 <meta name="description" content="supplemental figure, evidence map">
 	 <meta name="keywords" content="chronic pain, depression, systematic review, meta-analyses, network visualization, data science, review of reviews">
 	 <meta name="author" content="Darren K. Cheng">
 	 <!-- zoom script -->
@@ -443,21 +443,21 @@
 			Header bg: #ddd;
 			Header hover green: #819881;
 		*/
-		 body {background-color: white;}
+		 body {background-color: #fafafa;}
 		 * {box-sizing: border-box;}/* Font Formats */
 		 h1 {
 		 	font-family: sans-serif;
 		 	font-size: 1.5em;
 		 	letter-spacing: 2px;
 		 	line-height: 1;
-		 	margin-top: 30px;
+		 	margin-top: 20px;
 		 }
 		 h2 {
 		 	font-family: sans-serif;
 		 	font-size: 1em;
 		 	letter-spacing: 1.5px;
 		 	line-height: 1;
-		 	margin-bottom: 30px;
+		 	margin-bottom: 20px;
 		 }
 		 h3{
 		 	font-family: sans-serif;
@@ -475,16 +475,9 @@
 		 	font-family: sans-serif;
 		 	font-size: 12px;
 		 }
-		 p a {color:#437043;}
-		 p a:hover {color:black;}
+		 p a {color:#4d4d4d;}
+		 p a:hover {color:#8c8c8c;}
 	/* Page Style   */
-		 hr {
-		 	height:1px;
-		 	border-width:0;
-		 	color:lightgray;
-		 	background-color:#ddd;
-		 	margin-top: 15px;
-		 }
 		 div{
 		 	position:relative;
 		 	font-family: sans-serif;
@@ -492,7 +485,43 @@
 		 	overflow: auto;
 		 }
 		 footer p {font-size: 10px}
-
+/* NAVIGATION BAR ***************************************/
+		 ul.nav {
+		 	position: -webkit-sticky; /* Safari */
+		 	position: sticky;
+		 	top: 0px;
+		 	width: 100%;
+		 	list-style-type: none;
+		 	margin-top: 0;
+		 	margin-left: 0;
+		 	margin-right: 0;
+		 	padding: 0 0;
+		 	overflow-x: auto;
+		 	overflow-y: hidden;
+		 	background-color: #f2f2f2;
+		 	font-family: sans-serif;
+		 	z-index: 99;
+		 }
+		 ul.nav li {float: left;}
+		 ul.nav li.right {float: right;padding-right:2px;}
+		 ul.nav li a {
+		 	color: #4d4d4d;
+		 	font-size: 11px;
+		 	letter-spacing: 2px;
+		 	display: block;
+		 	text-align:center;
+		 	padding: 3px 8px;
+		 	text-decoration: none;
+		 }
+		 ul.nav li a:hover {
+		 	color: white;
+		 	background-color: #949494;
+		 }
+		 /* For narrow browsers - stacks navigation layout and shifts shifts anchors */ 
+		 @media screen and (max-width: 600px) {
+ 		 	ul.nav li.right, ul.nav li {float:none; font-size: 10px; letter-spacing: 0; line-height: .75; padding: 0; margin: 0;}
+ 		 	span.anchor {top:-140px;}
+		 }
 /* NETWORK VIZ ******************************************/
 	/* Viz + Legend Container */
 		 #vizcont {
@@ -501,7 +530,7 @@
     		width: 100%; 
 			border-collapse: collapse;
 			height: 900px;
-			border: 1px solid #f3f3f3;
+			border: 1px solid #f0f0f0;
 			z-index: 50;
 			overflow: hidden;
 		 }
@@ -518,7 +547,7 @@
 		 	position: relative;
 		 	display: table-cell;
 		 	border-collapse: collapse;
-		 	background-color: #f8f8f8;
+		 	background-color: #f2f2f2;
 		 	overflow: hidden;
 		 	min-width: 175px;
 		 	vertical-align: top;
@@ -661,8 +690,16 @@
 </head>
 <!------- B O D Y --- B E G I N S --------->
 <body onload="togALLPAIN(); togALLINT(); toggleSRlab(); togglePAlab();" >
+<!-- NAV ---------------------------------->
+	<ul class="nav">
+			<li><a href="https://darrenkcheng.github.io/CPdepSR/"><i>Index</i></a></li>
+			<li><a href="https://github.com/darrenkcheng/CPdepSR"><i>GitHub repository</i></a></li>
+			<li><a href="#bottom"><i>About</i></a></li>
+	</ul>
 <!-- NETWORK VIZ--------------------------->
 	<section style="position:relative;">
+		<h3>Evidence Map</h3>
+		<p><i>Please note that this interactive figure is optimized for viewing on computer screens and has been tested in Safari and Chrome.</br>Other browsers and smaller screens may not display all features.</i></p>
 		<div id="vizcont">
 			<div id="vizimgcont">
 				<!-- FULL DATA VIZ SVG -->
@@ -3389,8 +3426,8 @@
 				refreshRate: 'auto'
 	         });
 	    	 </script>
-				<div class="legend" style="padding-left:2px;"><span class="header">Zoom & Pan</span><br>
-					<span style="font-size: 9px;"><i>Scroll to zoom / click + drag to pan</i></span>
+				<div class="legend" style="padding-left:2px;">
+					<span style="font-size: 10px;"><i>Scroll to zoom<br>Click + drag to pan</i></span>
 					<div class="zoomable">
 						<button id="enableb" style="display:none; width:85px;" onclick="zoomMainViz.enableZoom(); zoomMainViz.enablePan(); zoomMainViz.enableDblClickZoom(); toggleZoom()">ENABLE</button>
 						<button id="disableb" style="display:block; width:85px;" onclick="zoomMainViz.disableZoom(); zoomMainViz.disablePan(); zoomMainViz.disableDblClickZoom(); toggleZoom()">DISABLE</button>
@@ -3526,6 +3563,20 @@
 			 </div>
 		</div>
 	</section>
+<!----- Footer ----->
+	</br>
+	<p style="margin-top:0; padding-top:0; font-size:9px;" id="bottom">
+			Visualizations and coding by Darren K. Cheng<br>
+			Evidence Map created in Gephi 0.9.2<br>
+			<a href="https://github.com/ariutta/svg-pan-zoom" title="Github library"><i>SVGPan library</i></a> copyright 2009-2010 Andrea Leofreddi
+		</p>
+		<p style="font-size:9px;">
+			<i>Bridgepoint Collaboratory for Research and Innovation<br>
+			Lunenfeld-Tanenbaum Research Institute - Sinai Health<br>
+			1 Bridgepoint Drive<br>
+			Toronto ON, Canada</i><br>
+			<a href="https://www.sinaihealth.ca" title="Sinai Health Home Page">sinaihealth.ca</a><br><br>
+	</p>
 <!-- SCRIPTS ------------------------------>
 	<script>
 		/** ZOOMING **/
