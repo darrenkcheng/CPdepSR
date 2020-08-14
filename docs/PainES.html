@@ -3,8 +3,8 @@
 <head>
 <!-- META DATA ---------------------------->
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <meta name="description" content="Supplemental information">
-	 <meta name="keywords" content="chronic pain, depression, systematic review, meta-analyses, network visualization, data science, review of reviews">
+	 <meta name="description" content="supplemental figure, plot">
+	 <meta name="keywords" content="chronic pain, depression, systematic review, meta-analyses, effect size, bubble plot, data science, review of reviews">
 	 <meta name="author" content="Darren K. Cheng">
 	 <!-- zoom script -->
 	 <script src="https://ariutta.github.io/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script>
@@ -377,21 +377,21 @@
 			Header bg: #ddd;
 			Header hover green: #819881;
 		*/
-		 body {background-color: white;}
+		 body {background-color: #fafafa;}
 		 * {box-sizing: border-box;}/* Font Formats */
 		 h1 {
 		 	font-family: sans-serif;
 		 	font-size: 1.5em;
 		 	letter-spacing: 2px;
 		 	line-height: 1;
-		 	margin-top: 30px;
+		 	margin-top: 20px;
 		 }
 		 h2 {
 		 	font-family: sans-serif;
 		 	font-size: 1em;
 		 	letter-spacing: 1.5px;
 		 	line-height: 1;
-		 	margin-bottom: 30px;
+		 	margin-bottom: 20px;
 		 }
 		 h3{
 		 	font-family: sans-serif;
@@ -409,16 +409,9 @@
 		 	font-family: sans-serif;
 		 	font-size: 12px;
 		 }
-		 p a {color:#437043;}
-		 p a:hover {color:black;}
+		 p a {color:#4d4d4d;}
+		 p a:hover {color:#8c8c8c;}
 	/* Page Style   */
-		 hr {
-		 	height:1px;
-		 	border-width:0;
-		 	color:lightgray;
-		 	background-color:#ddd;
-		 	margin-top: 15px;
-		 }
 		 div{
 		 	position:relative;
 		 	font-family: sans-serif;
@@ -426,6 +419,43 @@
 		 	overflow: auto;
 		 }
 		 footer p {font-size: 10px}
+/* NAVIGATION BAR ***************************************/
+		 ul.nav {
+		 	position: -webkit-sticky; /* Safari */
+		 	position: sticky;
+		 	top: 0px;
+		 	width: 100%;
+		 	list-style-type: none;
+		 	margin-top: 0;
+		 	margin-left: 0;
+		 	margin-right: 0;
+		 	padding: 0 0;
+		 	overflow-x: auto;
+		 	overflow-y: hidden;
+		 	background-color: #f2f2f2;
+		 	font-family: sans-serif;
+		 	z-index: 99;
+		 }
+		 ul.nav li {float: left;}
+		 ul.nav li.right {float: right;padding-right:2px;}
+		 ul.nav li a {
+		 	color: #4d4d4d;
+		 	font-size: 11px;
+		 	letter-spacing: 2px;
+		 	display: block;
+		 	text-align:center;
+		 	padding: 3px 8px;
+		 	text-decoration: none;
+		 }
+		 ul.nav li a:hover {
+		 	color: white;
+		 	background-color: #949494;
+		 }
+		 /* For narrow browsers - stacks navigation layout and shifts shifts anchors */ 
+		 @media screen and (max-width: 600px) {
+ 		 	ul.nav li.right, ul.nav li {float:none; font-size: 10px; letter-spacing: 0; line-height: .75; padding: 0; margin: 0;}
+ 		 	span.anchor {top:-140px;}
+		 }
 /* NETWORK VIZ ******************************************/
 	/* Viz + Legend Container */
 		 #vizcont {
@@ -434,7 +464,7 @@
     		width: 100%; 
 			border-collapse: collapse;
 			height: 1000px;
-			border: 1px solid #f3f3f3;
+			border: 1px solid #f0f0f0;
 			z-index: 50;
 			overflow: hidden;
 		 }
@@ -451,7 +481,7 @@
 		 	position: relative;
 		 	display: table-cell;
 		 	border-collapse: collapse;
-		 	background-color: #f8f8f8;
+		 	background-color: #f2f2f2;
 		 	overflow: hidden;
 		 	min-width: 175px;
 		 	vertical-align: top;
@@ -636,20 +666,25 @@
 						.checklist:hover input ~ .checkN, .checklist input:checked ~ .checkN:hover {background-color: #ccc;}
 						/* Checked colour */
 						.checklist input:checked ~ .checkN {background-color: #ccc;}
-
-
 	</style>
-	<title>Intervention vs Effect Size</title>
+	<title>Effect Size by Pain Type</title>
 </head>
 <!------- B O D Y --- B E G I N S --------->
 <body>
+<!-- NAV ---------------------------------->
+	<ul class="nav">
+			<li><a href="https://darrenkcheng.github.io/CPdepSR/"><i>Index</i></a></li>
+			<li><a href="https://github.com/darrenkcheng/CPdepSR"><i>GitHub repository</i></a></li>
+			<li><a href="#bottom"><i>About</i></a></li>
+	</ul>
 <!-- Pain v ES VIZ--------------------------->
 	<section style="position:relative;">
-		<span class="anchor" id="viz"></span>
+		<h3>Effect Size by Pain Type</h3>
+		<p><i>Please note that this interactive figure is optimized for viewing on computer screens and has been tested in Safari and Chrome. Other browsers and smaller screens may not display all features.</i></p>
 		<div id="vizcont">
 			<div id="vizimgcont">
 			  <!-- FULL DATA VIZ SVG -->
-				<svg id="IntSVG" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 625 900" style="display: block; width: 100%; height: 100%; min-width: inherit; max-width: inherit; min-height: inherit; max-height: inherit;" z-index="80">
+				<svg id="PainSVG" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 625 900" style="display: block; width: 100%; height: 100%; min-width: inherit; max-width: inherit; min-height: inherit; max-height: inherit;" z-index="80">
 					<style type="text/css">
 						.st0{fill:none;stroke:#DEDEDE;stroke-width:1.07;stroke-linejoin:round;stroke-miterlimit:10;}
 						.st1{fill:none;stroke:#949494;stroke-width:1.07;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:1.07,3.2;}
@@ -2557,8 +2592,8 @@
 			<span class="header" style="font-size:14px;">DISPLAY OPTIONS</span>
 			<!-- OPTIONS -->
 			<!-- ZOOMING -->
-				<div class="legend" style="padding-left:2px;"><span class="header">Zoom & Pan</span><br>
-					<span style="font-size: 9px;"><i>Scroll to zoom / click + drag to pan</i></span>
+				<div class="legend" style="padding-left:2px;">
+					<span style="font-size: 10px;"><i>Scroll to zoom<br>Click + drag to pan</i></span>
 					<div class="zoomable">
 						<button id="enableb" style="display:none; width:85px;" onclick="zoomMainViz.enableZoom(); zoomMainViz.enablePan(); zoomMainViz.enableDblClickZoom(); toggleZoom()">ENABLE</button>
 						<button id="disableb" style="display:block; width:85px;" onclick="zoomMainViz.disableZoom(); zoomMainViz.disablePan(); zoomMainViz.disableDblClickZoom(); toggleZoom()">DISABLE</button>
@@ -2647,9 +2682,23 @@
 			</div>
 		</div>
 	</section>
+<!----- Footer ----->
+	</br>
+	<p style="margin-top:0; padding-top:0; font-size:9px;" id="bottom">
+			Visualizations and coding by Darren K. Cheng</br>
+			Plots created in R using <a href="https://ggplot2.tidyverse.org" title="Package site">ggplot2</a> within the tidyverse package
+		</p>
+		<p style="font-size:9px;">
+			<i>Bridgepoint Collaboratory for Research and Innovation<br>
+			Lunenfeld-Tanenbaum Research Institute - Sinai Health<br>
+			1 Bridgepoint Drive<br>
+			Toronto ON, Canada</i><br>
+			<a href="https://www.sinaihealth.ca" title="Sinai Health Home Page">sinaihealth.ca</a><br><br>
+	</p>
+<!---SCRIPTS----------------->
 	<script>
 		/** ZOOMING **/
-			var zoomMainViz = svgPanZoom('#IntSVG', {
+			var zoomMainViz = svgPanZoom('#PainSVG', {
 				zoomEnabled: true,
 				controlIconsEnabled: false,
 				zoomScaleSensitivity: 0.1,
