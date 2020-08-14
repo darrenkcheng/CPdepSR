@@ -4,6 +4,6 @@
 
 This systematic review is registered in PROSPERO, an international site for the pre-registration of systematic reviews: https://www.crd.york.ac.uk/prospero/display_record.php?RecordID=131871
 
-This repository contains the code for interactive supplementary figures.
+This repository contains code files for the interactive supplemental figures.
 
 To access and view the interactive figures, please visit the index page: https://darrenkcheng.github.io/CPdepSR/
